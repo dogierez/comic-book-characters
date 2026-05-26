@@ -5,112 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Superhero & Villain Listening Quizzes</title>
     <style>
-        :root {
-            --primary: #3498db;
-            --success: #2ecc71;
-            --danger: #e74c3c;
-            --dark: #2c3e50;
-            --light: #ecf0f1;
-            --bg: #f7f9fa;
-            --purple: #9b59b6;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg);
-            color: var(--dark);
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-        }
-
-        .app-container {
-            background: white;
-            max-width: 600px;
-            width: 100%;
-            border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            overflow: hidden;
-            min-height: 80vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .header {
-            background-color: var(--primary);
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .header h1 { margin: 0; font-size: 24px; }
-
-        .content { padding: 20px; flex-grow: 1; }
-
-        .menu-list { list-style: none; padding: 0; margin: 0; }
-
-        .menu-item {
-            background: var(--light);
-            margin-bottom: 10px;
-            padding: 15px;
-            border-radius: 8px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-
-        .menu-item:hover { transform: scale(1.02); background: #dfe6e9; }
-
-        .status-badge {
-            font-size: 14px; font-weight: bold; padding: 5px 10px;
-            border-radius: 20px; background: #bdc3c7; color: white;
-        }
-        .status-badge.completed { background: var(--success); }
-
-        .audio-container { width: 100%; margin-bottom: 20px; text-align: center; }
-        audio { width: 100%; outline: none; }
-
-        .question-text { font-size: 18px; font-weight: bold; margin-bottom: 15px; }
-
-        .option-btn {
-            display: block; width: 100%; padding: 15px; margin-bottom: 10px;
-            background: var(--light); border: 2px solid transparent;
-            border-radius: 8px; font-size: 16px; text-align: left;
-            cursor: pointer; transition: 0.2s;
-        }
-
-        .option-btn:hover:not(:disabled) { background: #dfe6e9; }
-        .option-btn.correct { background: var(--success); color: white; border-color: var(--success); }
-        .option-btn.incorrect { background: var(--danger); color: white; border-color: var(--danger); }
-        .option-btn:disabled { cursor: not-allowed; opacity: 0.8; }
-
-        .feedback { font-weight: bold; text-align: center; margin: 15px 0; min-height: 24px; }
-
-        .action-btn {
-            background: var(--primary); color: white; border: none;
-            padding: 15px; width: 100%; border-radius: 8px; font-size: 18px;
-            cursor: pointer; font-weight: bold; margin-bottom: 10px;
-        }
-        .action-btn:hover { background: #2980b9; }
-
-        .results-container { text-align: center; }
-        .circle-score {
-            width: 150px; height: 150px; border-radius: 50%;
-            background: var(--primary); color: white; display: flex;
-            align-items: center; justify-content: center; font-size: 40px;
-            font-weight: bold; margin: 20px auto;
-        }
-
-        #transcript-area {
-            background: var(--light); padding: 15px; border-radius: 8px;
-            text-align: left; font-size: 15px; line-height: 1.6;
-            margin-bottom: 20px; border-left: 4px solid var(--purple);
-        }
-
-        .hidden { display: none !important; }
+        :root{--primary:#3498db;--success:#2ecc71;--danger:#e74c3c;--dark:#2c3e50;--light:#ecf0f1;--bg:#f7f9fa;--purple:#9b59b6;}
+        body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background-color:var(--bg);color:var(--dark);margin:0;padding:20px;display:flex;justify-content:center;}
+        .app-container{background:white;max-width:600px;width:100%;border-radius:12px;box-shadow:0 5px 20px rgba(0,0,0,0.05);overflow:hidden;min-height:80vh;display:flex;flex-direction:column;}
+        .header{background-color:var(--primary);color:white;padding:20px;text-align:center;}
+        .header h1{margin:0;font-size:24px;}
+        .content{padding:20px;flex-grow:1;}
+        .menu-list{list-style:none;padding:0;margin:0;}
+        .menu-item{background:var(--light);margin-bottom:10px;padding:15px;border-radius:8px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;transition:transform 0.2s;}
+        .menu-item:hover{transform:scale(1.02);background:#dfe6e9;}
+        .status-badge{font-size:14px;font-weight:bold;padding:5px 10px;border-radius:20px;background:#bdc3c7;color:white;}
+        .status-badge.completed{background:var(--success);}
+        .audio-container{width:100%;margin-bottom:20px;text-align:center;}
+        audio{width:100%;outline:none;}
+        .question-text{font-size:18px;font-weight:bold;margin-bottom:15px;}
+        .option-btn{display:block;width:100%;padding:15px;margin-bottom:10px;background:var(--light);border:2px solid transparent;border-radius:8px;font-size:16px;text-align:left;cursor:pointer;transition:0.2s;}
+        .option-btn:hover:not(:disabled){background:#dfe6e9;}
+        .option-btn.correct{background:var(--success);color:white;border-color:var(--success);}
+        .option-btn.incorrect{background:var(--danger);color:white;border-color:var(--danger);}
+        .option-btn:disabled{cursor:not-allowed;opacity:0.8;}
+        .feedback{font-weight:bold;text-align:center;margin:15px 0;min-height:24px;}
+        .action-btn{background:var(--primary);color:white;border:none;padding:15px;width:100%;border-radius:8px;font-size:18px;cursor:pointer;font-weight:bold;margin-bottom:10px;}
+        .action-btn:hover{background:#2980b9;}
+        .results-container{text-align:center;}
+        .circle-score{width:150px;height:150px;border-radius:50%;background:var(--primary);color:white;display:flex;align-items:center;justify-content:center;font-size:40px;font-weight:bold;margin:20px auto;}
+        #transcript-area{background:var(--light);padding:15px;border-radius:8px;text-align:left;font-size:15px;line-height:1.6;margin-bottom:20px;border-left:4px solid var(--purple);}
+        .hidden{display:none !important;}
     </style>
 </head>
 <body>
@@ -165,249 +85,776 @@
 </div>
 
 <script>
-    // Update this URL if your repo path changed
     const baseUrl = "https://raw.githubusercontent.com/dogierez/history-of--things-listen/main/";
 
     const lessonsData = [
         {
             id: 1, title: "1. Aquaman", audioUrl: baseUrl + "1.%20Aquaman.mp3",
             text: "Aquaman is a very famous superhero. He is the strong king of the deep ocean. His real name is Arthur Curry. He is a very tall and brave man. Aquaman has a very special power that no one else has. He can talk to all the animals living in the big sea. He talks to dangerous sharks, giant whales, and smart dolphins! The animals always listen to him and help him when he is in danger. He can also swim very, very fast under the dark water. Aquaman wears a bright orange and green suit that looks like fish scales. He carries a big, magic gold fork. This big fork is called a trident. He uses his sharp trident to fight bad guys and protect the beautiful oceans. He wants to keep the water clean and safe for all the sea animals and people. He is a very good and strong king.",
-            questions: []
+            questions: [
+                { q: "What adjective describes the dolphins Aquaman talks to?", options: ["A) Dangerous", "B) Fast", "C) Giant", "D) Smart"], answer: 3 },
+                { q: "What does his bright orange and green suit look like?", options: ["A) Seaweed", "B) Fish scales", "C) Shark skin", "D) Turtle shell"], answer: 1 },
+                { q: "What is his big, magic gold fork called?", options: ["A) A trident", "B) A weapon", "C) A sword", "D) A hook"], answer: 0 },
+                { q: "Who always listens to him and helps him when he is in danger?", options: ["A) Other kings", "B) The animals", "C) Normal people", "D) Bad guys"], answer: 1 },
+                { q: "What is Aquaman's real name?", options: ["A) Arthur Curry", "B) Bruce Wayne", "C) Steve Rogers", "D) Wade Wilson"], answer: 0 },
+                { q: "True/False: Aquaman's magic fork is made of silver.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: He talks to dangerous sharks and giant whales.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: He can swim very fast above the water.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: He wants to keep the water clean and safe.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: He is described as a short and brave man.", options: ["True", "False"], answer: 1 }
+            ]
         },
         {
-            id: 2, title: "2. Batman", audioUrl: baseUrl + "2.Batman.mp3",
-            text: "Batman is a very famous and cool superhero. He lives in a big, dark place called Gotham City. His real name is Bruce Wayne. Bruce Wayne is a very rich man with a big house. But at night, he puts on a scary black mask and a long black cape. He becomes Batman! Batman does not have any magic powers from space or science. He is just a normal human being. But he is very smart, very strong, and he exercises every single day. He has a very fast, black car called the Batmobile. He also has many cool tools in his yellow belt. He uses these tools to catch bad guys. He fights dangerous criminals to keep his city safe from bad things. Many people in Gotham City are afraid of the dark, but Batman is never afraid. He is a very brave hero who always helps people in danger.",
-            questions: []
-        },
-        {
-            id: 3, title: "3. Captain America", audioUrl: baseUrl + "3.%20Captain%20America.mp3",
-            text: "Captain America is a very famous and brave superhero. His real name is Steve Rogers. A long time ago, Steve was a very small and weak man. He was not strong, but he wanted to help people and fight bad guys. A smart doctor gave him a special medicine. The medicine changed his body. It made him very big, fast, and incredibly strong! Now, Captain America wears a very cool suit. His suit is red, white, and blue, just like a flag. He also carries a big, round shield. His shield is very heavy and made of a special metal. Nothing in the world can break his magic shield. He throws his shield to catch the bad guys, and the shield always comes back to his hand. Captain America is a great leader. He always tells his friends to do the right thing. He is a true hero for everyone.",
-            questions: []
-        },
-        {
-            id: 4, title: "4. Carnage", audioUrl: baseUrl + "4.%20Carnage.mp3",
-            text: "Carnage is a very scary and dangerous villain. He is a big enemy of Spider-Man and Venom. Carnage looks like a tall man, but he is actually a monster from space. His body is made of a strange, wet liquid. This liquid is bright red and black. Because his body is liquid, he can change his shape easily. He can change his hands into very sharp weapons, like long swords and heavy axes. Carnage is extremely fast and very strong. He can climb up tall walls and jump between big buildings like a spider. He does not care about anyone. He only loves to create trouble and break things in the city. Spider-Man has to work very hard and be very careful to stop this scary red monster. Carnage is wild, angry, and very hard to catch. He is one of the worst bad guys in the comic books.",
-            questions: []
-        },
-        {
-            id: 5, title: "5. Craven (Kraven)", audioUrl: baseUrl + "5.%20Craven%20(Kraven).mp3",
-            text: "Kraven is a very dangerous villain. People also call him Kraven the Hunter. Kraven comes from a cold place, but he loves to travel everywhere. He is a very good tracker. He loves to hunt wild animals in the deep green jungle. But Kraven's favorite thing to hunt is not an animal. He wants to hunt Spider-Man! Kraven does not use magic or big guns. Instead, he drinks special potions made from jungle plants. These magic drinks make him as fast as a running cheetah. They also make him as strong as a big, angry lion. He wears a very crazy suit made of real animal skin. He wants to catch Spider-Man to prove a point. Kraven wants everyone to know that he is the best and strongest hunter in the whole world. He is very quiet and very fast, so Spider-Man must always be ready for a big fight.",
-            questions: []
-        },
-        {
-            id: 6, title: "6. Cyclops", audioUrl: baseUrl + "6.%20Cyclops.mp3",
-            text: "Cyclops is a very brave hero and a great leader. He leads a famous team of mutant heroes called the X-Men. His real name is Scott Summers. Cyclops has a very amazing but dangerous power. He shoots bright red laser beams right out of his eyes! These red lasers are very hot and incredibly strong. They can break big rocks and heavy metal doors. But there is a big problem with his power. Cyclops cannot turn his red lasers off. If he opens his eyes, the red beams shoot out and destroy everything in front of him. So, he must always wear special glasses made of red glass. Sometimes he wears a special battle mask. These glasses and masks keep his powerful laser eyes safe. He works hard to protect his mutant friends and all the normal people. He is a smart teacher and a very strong hero for his team.",
-            questions: []
-        },
-        {
-            id: 7, title: "7. Deadpool", audioUrl: baseUrl + "7.%20Deadpool.mp3",
-            text: "Deadpool is a very funny and crazy character. His real name is Wade Wilson. Deadpool wears a cool suit that is bright red and black. His suit covers his whole body and his face. He is very strong and runs very fast. He carries two sharp swords on his back and many other weapons. But Deadpool has one power that is the best of all. He has a super healing body. If he gets hurt in a bad fight, his body fixes itself very quickly. He can never get sick and it is very hard to defeat him. Deadpool is very different from other normal heroes. He loves to talk all the time and make silly jokes, even during a dangerous fight! Sometimes he acts like a good hero, and sometimes he just wants to have fun. He is wild, loud, and he always makes the other heroes feel very annoyed.",
-            questions: []
-        },
-        {
-            id: 8, title: "8. Dr Octopus", audioUrl: baseUrl + "8.%20Dr%20Octopus.mp3",
-            text: "Dr. Octopus is a very smart and very bad villain. His real name is Otto Octavius. He is a brilliant scientist who loves to build new machines. One day, he was working in his laboratory. Suddenly, there was a terrible accident with his machine. Now, he has four long, metal robot arms permanently connected to his back! Because he has four robot arms and two human arms, people call him Dr. Octopus. These silver metal arms are incredibly strong. They can easily crush heavy cars and climb up very tall glass buildings. The robot arms move very fast and obey his brain. He uses his robot arms to steal money from banks and fight Spider-Man. Dr. Octopus is very dangerous because he is a genius. He always makes clever plans to defeat the heroes. Spider-Man must use all his speed and his sticky webs to stop this smart scientist.",
-            questions: []
-        },
-        {
-            id: 9, title: "9. Electro", audioUrl: baseUrl + "9.%20Electro.mp3",
-            text: "Electro is a very bright and shocking villain! He is a dangerous enemy of Spider-Man. Electro's real name is Max Dillon. One day, Max was doing his job. He was fixing some electric power lines high in the air. Suddenly, there was a big storm, and yellow lightning hit him directly! But the hot lightning did not hurt him at all. Instead, it gave him amazing super powers. Now, Electro's whole body is full of pure electricity. He can shoot bright yellow and blue lightning bolts from his hands! He can fly through the air using pure electric energy. He can even turn off all the lights and power in the whole city. He wants to steal money and cause big problems. Spider-Man has to be very careful when he fights him. If Spider-Man gets too close, he will get a very bad electric shock from this bright yellow villain!",
-            questions: []
-        },
-        {
-            id: 10, title: "10. Falcon", audioUrl: baseUrl + "10.%20Falcon.mp3",
-            text: "Falcon is a great superhero and a very good friend. He is the best partner of Captain America. His real name is Sam Wilson. Sam does not have any magic powers from space or science. He is a brave soldier who wants to help people. He wears a very special and cool suit. His suit has big, robotic wings made of strong metal. When Sam puts on his wing suit, he can fly very high in the clouds just like a real bird! He is very fast in the sky. He also has a small robot bird named Redwing. Redwing flies around the city and uses cameras to help Falcon. Redwing can see where the bad guys are hiding in secret places. Falcon uses his flying skills and his robot bird to stop criminals. He is a fast, smart, and fantastic hero who always does the right thing.",
-            questions: []
-        },
-        {
-            id: 11, title: "11. Felicia Hardy (Black Cat)", audioUrl: baseUrl + "11.%20Felicia%20Hardy%20(Black%20Cat).mp3",
-            text: "Felicia Hardy is a very interesting and tricky character. She is also known as the Black Cat. Felicia is not always a bad guy, but she is not always a good guy either! She wears a black leather suit and a small black mask over her eyes. She is a famous thief. She loves to steal shiny diamonds, rich jewelry, and lots of money. She moves very quietly, exactly like a real cat. Felicia does not have big super powers like flying or lasers. However, she is an amazing gymnast. She can jump very high across rooftops and run very fast. She also has a very secret magic power. She brings 'bad luck' to all her enemies. When bad guys try to fight her, they always fall down, drop their weapons, or make silly mistakes! Spider-Man never knows if he should catch her or be her good friend.",
-            questions: []
-        },
-        {
-            id: 12, title: "12. Flash", audioUrl: baseUrl + "12.%20Flash.mp3",
-            text: "The Flash is a very famous and exciting superhero. He is known as the fastest man in the whole world! His real name is Barry Allen. Barry was a normal man working in a police science lab. One night, yellow lightning hit some dangerous chemicals. The chemicals splashed all over him, and a miracle happened. He got the power of super speed! The Flash wears a bright red suit with a yellow lightning bolt right on his chest. He can run much faster than a fast sports car. He can run so fast that nobody can see him. He can even run across deep water without sinking! He uses his amazing speed to save people who are in danger. He can run across the city in one second to stop villains before they can escape. The Flash is always happy, very brave, and he is always ready to run and help.",
-            questions: []
-        },
-        {
-            id: 13, title: "13. Ghost Rider", audioUrl: baseUrl + "13.%20Ghost%20Rider.mp3",
-            text: "Ghost Rider is a very spooky and scary superhero. He rides a very fast and loud motorcycle through the dark streets. But this is not a normal motorcycle. Its big wheels are made of bright, hot, orange fire! Ghost Rider is not a normal man, either. When he is angry, his head turns into a scary white skeleton skull. His skull is completely covered in bright fire! He wears a black leather jacket and carries a long, heavy metal chain. Ghost Rider might look like a very bad monster, but he is actually a good hero. He uses his magic fire and his heavy chain to catch very bad criminals at night. He wants to punish the bad guys for doing terrible things. Normal people are sometimes afraid of him, but Ghost Rider always protects innocent people. He fights evil monsters and keeps the dark city safe from danger.",
-            questions: []
-        },
-        {
-            id: 14, title: "14. Green Goblin", audioUrl: baseUrl + "14.%20Green%20Goblin.mp3",
-            text: "The Green Goblin is a very scary and famous villain. He is Spider-Man's biggest and worst enemy. His real name is Norman Osborn. Norman was a very rich and smart businessman. He drank a secret green chemical because he wanted to be strong. The chemical made him very strong, but it also made his brain crazy! Now, he wears a scary, green monster costume and a creepy mask. He flies high around the city on a fast machine called a goblin glider. The Green Goblin loves to cause terrible trouble. He loves to throw small, round bombs at people and buildings. His dangerous bombs look exactly like little orange pumpkins! He laughs a very loud and scary laugh when he flies in the sky. He hates Spider-Man very much. He always makes evil plans to destroy Spider-Man's life and hurt his best friends. He is a very evil man.",
-            questions: []
-        },
-        {
-            id: 15, title: "15. Harley Quinn", audioUrl: baseUrl + "15.%20Harley%20Quinn.mp3",
-            text: "Harley Quinn is a very famous and colorful villain from Gotham City. She is the Joker's best friend and helper. Harley is very crazy and she loves to laugh loudly. She usually wears bright red and black clothes. She paints her face white and ties her hair in two colorful ponytails. Sometimes her hair is pink and blue. Harley does not have any magic powers or super strength. But she is a great gymnast and acrobat. She can jump, flip, and run very fast. She loves to carry dangerous toys. Her favorite weapon is a giant wooden baseball bat or a very big wooden hammer. She uses her toys to break things, hit people, and fight against Batman. She thinks fighting and destroying things is just a very funny game! Harley is wild, loud, and always ready to make a big mess in the city.",
-            questions: []
-        },
-        {
-            id: 16, title: "16. Hobgoblin", audioUrl: baseUrl + "16.%20Hobgoblin.mp3",
-            text: "The Hobgoblin is a very scary and dangerous villain. He looks a lot like the Green Goblin, but he is a different person. He wears a bright yellow cape and a dark orange hood over his creepy monster mask. The Hobgoblin is a very greedy and bad man. He loves to steal money and he wants to have a lot of power in the city. Just like the Green Goblin, he flies fast through the air on a metal glider machine. He also throws the exact same exploding pumpkin bombs to destroy cars and buildings! But the Hobgoblin is usually smarter and much more careful than the Green Goblin. He likes to hide in the dark shadows and trick other bad guys into helping him. He uses his sharp brain to make clever and evil plans. He is a very tricky and difficult enemy for Spider-Man to catch.",
-            questions: []
-        },
-        {
-            id: 17, title: "17. Hydroman (Hydro-Man)", audioUrl: baseUrl + "17.%20Hydroman%20(Hydro-Man).mp3",
-            text: "Hydro-Man is a very wet and dangerous villain. His real name is Morris Bench. Morris was a normal sailor working on a big cargo boat. One day, he fell into the deep blue ocean. At the same time, a special machine was testing strong energy in the water. The strange energy changed his body completely. Now, Morris's entire body is made of moving water! He can turn his arms into giant water hoses and shoot heavy water at people. He can create huge waves to wash Spider-Man away down the street. Hydro-Man can even turn into a small puddle of water and hide quietly on the floor! He is a very difficult villain for heroes to fight. If Spider-Man tries to punch him, his hand just goes right through the water! Spider-Man must use science, heat, or cold ice to stop this dangerous and wet bad guy.",
-            questions: []
-        },
-        {
-            id: 18, title: "18. Iceman", audioUrl: baseUrl + "18.%20Iceman.mp3",
-            text: "Iceman is a very cool hero and an important member of the X-Men team. His real name is Bobby Drake. Bobby is a special mutant with an amazing and fun power. He can easily control ice, cold wind, and white snow. He can make the warm air extremely cold in just one second. When he uses his strong power, his whole body turns into solid, clear blue ice! Iceman can shoot sharp ice arrows right from his hands. He can also create long, slippery ice slides high in the sky. He slides on these ice paths very fast, exactly like a skilled skateboarder or surfer. Iceman loves to make jokes and have fun with his friends. But when bad guys attack, he is very brave and serious. He uses his freezing ice powers to protect his mutant team and stop dangerous villains from hurting innocent people.",
-            questions: []
-        },
-        {
-            id: 19, title: "19. Iron Man", audioUrl: baseUrl + "19.%20Iron%20Man.mp3",
-            text: "Iron Man is a very famous and amazing superhero. His real name is Tony Stark. Tony Stark is a brilliant genius. That means he is incredibly smart and knows everything about science! He does not have any magic powers from space. Instead, he builds amazing robot suits in his big laboratory. His favorite and best suit is painted bright red and shiny gold. When Tony wears this heavy metal suit, he becomes super strong. He can lift heavy cars and break big walls. He can fly very high in the sky using loud rockets hidden in his boots. The Iron Man suit also shoots bright energy beams directly from its hands. Tony Stark uses his money, his smart brain, and his fantastic technology to save the world! He is a great leader and he always tries to protect the Earth from aliens and bad villains.",
-            questions: []
-        },
-        {
-            id: 20, title: "20. Jean Grey", audioUrl: baseUrl + "20.%20Jean%20Grey.mp3",
-            text: "Jean Grey is a very powerful and important superhero. She is a brave member of the X-Men team. Jean looks like a normal human woman with bright red hair, but she has incredible magic powers inside her mind. Her first power is moving things with her brain. She can easily lift heavy cars, stop a flying bullet, or move big rocks just by thinking about it! She never needs to touch anything with her hands. Her second power is reading minds. She can hear exactly what other people are thinking and feeling. Sometimes, Jean has a very special and fiery energy inside her body. This bright energy is called the Phoenix. When she uses the Phoenix energy, she becomes one of the strongest heroes in the whole universe. She is very kind and always tries to use her strong mind to help her good friends and protect the world.",
-            questions: []
-        },
-        {
-            id: 21, title: "21. Joker", audioUrl: baseUrl + "21.%20Joker.mp3",
-            text: "The Joker is a very evil and crazy villain. He is Batman's worst and most famous enemy in Gotham City. The Joker looks very strange and creepy. He has bright white skin, messy green hair, and a big, scary red smile painted on his face. He looks exactly like a circus clown, but he is definitely not funny. He is a very dangerous man. The Joker loves to tell bad jokes and play terrible, hurtful tricks on people. He uses dangerous toys, like fake flowers that squirt burning acid, or small toys that give you a bad electric shock. He does not care about money. He only wants to make everybody in the city as crazy and angry as he is. Batman always tries to stop his bad games and lock him away in prison. The Joker is wild, loud, and always ready to cause big trouble.",
-            questions: []
-        },
-        {
-            id: 22, title: "22. Killer Croc", audioUrl: baseUrl + "22.%20Killer%20Croc.mp3",
-            text: "Killer Croc is a huge and scary monster. He is a big villain who often fights Batman in Gotham City. His real name is Waylon Jones. Waylon was born with a very rare and strange skin disease. As he grew up, his skin became thick, hard, and green, exactly like a real crocodile! Because people were very mean to him and called him a monster, he ran away. He moved down into the dark, dirty sewers under the city. Killer Croc is incredibly big and super strong. He can easily lift heavy cars. He has very sharp teeth and heavy claws on his big hands. He can also hold his breath underwater for a very long time. He is a very dangerous beast when he is hiding in the dark water. Batman must be very strong and smart to fight this giant, angry crocodile man in the dark sewers.",
-            questions: []
-        },
-        {
-            id: 23, title: "23. Lizard", audioUrl: baseUrl + "23.%20Lizard.mp3",
-            text: "The Lizard is a very big, green monster. He is a dangerous enemy of Spider-Man. His real name is Dr. Curt Connors. Dr. Connors was a very good man and a smart doctor, but he lost his arm in an accident. He wanted his human arm to grow back. He studied how real lizards can grow their tails back. He made a special lizard medicine and drank it. It worked perfectly! His arm grew back! But there was a terrible problem. The strong medicine changed his whole body into a giant, angry, green lizard! Now he walks on two legs. He has very sharp claws, strong teeth, and a heavy green tail. He wants to turn everyone in the city into lizards too! Spider-Man does not want to hurt him. Spider-Man always tries to give him the right medicine to make him a normal human doctor again.",
-            questions: []
-        },
-        {
-            id: 24, title: "24. Loki", audioUrl: baseUrl + "24.%20Loki.mp3",
-            text: "Loki is a very famous and tricky character. He is the Prince of Asgard and the brother of the hero Thor. But Loki is not a very good brother at all. He is known as the God of Mischief. That means he loves to play bad tricks, cause trouble, and tell many lies. Loki uses powerful green magic. He can easily make himself look like a completely different person or even a small animal! He can also make fake magic copies of himself to confuse his angry enemies in a battle. Loki wears nice green and gold clothes. He wears a big gold helmet with two long horns on his head. Loki is very jealous of Thor. He always wants to be the powerful king of Asgard. He causes very big problems for his brother and all the other heroes on Earth. He is smart, selfish, and dangerous.",
-            questions: []
-        },
-        {
-            id: 25, title: "25. Miles Morales", audioUrl: baseUrl + "25.%20Miles%20Morales.mp3",
-            text: "Miles Morales is a very cool and young teenage superhero. He lives in a big city. Just like his friend Peter Parker, Miles was bitten by a magic, radioactive spider. This special spider gave him amazing super powers! Miles became the new Spider-Man to help protect his busy city. He wears a very cool and different suit. His suit is completely black with a bright red spider painted on his chest. Miles can easily climb up tall walls and shoot strong, sticky webs from his hands. But he has two extra powers that are very special. He can turn his body completely invisible, so nobody can see him hiding! He can also shoot a bright yellow electric shock right from his hands. He uses this electric shock to stun the bad guys. Miles is a very brave, kind, and smart boy who loves helping people in his neighborhood.",
-            questions: []
-        },
-        {
-            id: 26, title: "26. Miguel O'Hara", audioUrl: baseUrl + "26.%20Miguel%20O'Hara.mp3",
-            text: "Miguel O'Hara is a very exciting hero. He is also Spider-Man, but he lives far away in the future, in the year 2099! His future city is a very cool place full of flying cars and extremely tall glass towers. Miguel is a very smart scientist. He did an experiment and accidentally changed his own body DNA to become a super spider! He wears a shiny dark blue suit with a scary red skull-spider on his chest. Miguel is incredibly fast and super strong. He does not need to build web-shooters like Peter Parker. His strong webs come straight out of his own arms! He also has very sharp claws on his fingers and toes. He uses these sharp claws to climb smooth futuristic buildings and fight dangerous robots. Miguel is a very serious and brave hero who protects the future world from very bad and powerful companies.",
-            questions: []
-        },
-        {
-            id: 27, title: "27. Molten Man", audioUrl: baseUrl + "27.%20Molten%20Man.mp3",
-            text: "The Molten Man is a very dangerous and glowing villain. His real name is Mark Raxton. Mark was a scientist who accidentally touched a strange and dangerous alien rock. The alien rock covered his entire skin in a hot, liquid metal. Now, his whole body is made of shining, bright golden metal! The Molten Man is extremely hot, like a burning fire. If he touches a wall or a car, it immediately melts or catches on fire. He is also very heavy and incredibly strong. Because his metal body is so hot and slippery, it is very difficult for heroes to catch him. Spider-Man has a very hard time fighting him. Spider-Man's webs just melt away when they touch his hot golden skin! The Molten Man is usually angry and confused. He is a very dangerous, burning enemy who leaves hot, melted footprints everywhere he walks in the city.",
-            questions: []
-        },
-        {
-            id: 28, title: "28. Moon Knight", audioUrl: baseUrl + "28.%20Moon%20Knight.mp3",
-            text: "Moon Knight is a very mysterious and tough superhero who usually works late at night. His real name is Marc Spector. He wears a very bright, completely white suit. He also wears a long white cape and a white hood over his face. Most heroes wear dark colors to hide at night, but he wants the bad guys to see him coming! Moon Knight gets his special magic power from an ancient Egyptian moon god. When the moon in the sky is full and bright, he becomes much stronger and faster. He is a great fighter and knows how to box. He uses sharp metal weapons shaped exactly like little crescent moons. He throws these moon weapons like sharp boomerangs to catch the dangerous criminals running in the dark city streets. Moon Knight is very brave, but his mind is complicated. He always tries to protect innocent people from evil.",
-            questions: []
-        },
-        {
-            id: 29, title: "29. Mr Freeze", audioUrl: baseUrl + "29.%20Mr%20Freeze.mp3",
-            text: "Mr. Freeze is a very sad and extremely cold villain from Gotham City. His real name is Victor Fries. Victor was a smart doctor trying to cure his very sick wife. But he had a terrible accident in his lab with freezing ice chemicals. Now, his body has changed. He cannot live in a warm or sunny place anymore. His body must always stay below zero degrees! To survive, he wears a big, heavy robot suit with a clear glass helmet over his head. The heavy suit keeps his body freezing cold and makes him super strong. He carries a big, dangerous gun that shoots solid blue ice. He uses his ice gun to freeze Batman and anything else in his way! Mr. Freeze does not want to rule the city. He only steals money and diamonds to help his sick wife. He is a cold but very sad man.",
-            questions: []
-        },
-        {
-            id: 30, title: "30. Mysterio", audioUrl: baseUrl + "30.%20Mysterio.mp3",
-            text: "Mysterio is a very tricky and smart villain who often fights Spider-Man. Mysterio's real name is Quentin Beck. Quentin was not a scientist or a monster. He was a normal actor who worked in movies making cool special effects. He does not have any real magic or super strength. Instead, he uses thick colored smoke, mirrors, bright lights, and small robots to trick people. He wears a green suit and a long purple cape. The funniest thing is his helmet. His helmet looks exactly like a big, clear fishbowl! Mysterio creates huge fake monsters, fake aliens, and fake buildings to confuse Spider-Man. He uses these amazing illusions to easily steal money from banks and pretend to be a powerful wizard. Spider-Man must use his special spider-sense to close his eyes and feel the real danger. Mysterio is a master of lies and a very fun villain to watch.",
-            questions: []
-        },
-        {
-            id: 31, title: "31. Penguin", audioUrl: baseUrl + "31.%20Penguin.mp3",
-            text: "The Penguin is a very famous boss of the bad guys in Gotham City. His real name is Oswald Cobblepot. He looks a little bit like a real penguin animal! He is a short, round man with a big, sharp nose. He always wears a fancy black tuxedo coat and a tall black hat. He also wears a special glass over one eye. The Penguin is a very rich man and he loves to collect beautiful and dangerous birds. He does not have super strength or magic powers. But he always carries special umbrellas. His umbrellas look completely normal, but they are full of hidden tricks! Some umbrellas can shoot dangerous bullets, some can shoot hot fire, and some can even spin fast to help him fly away like a helicopter! The Penguin is very smart and loves to make evil plans. Batman always has to stop his criminal business.",
-            questions: []
-        },
-        {
-            id: 32, title: "32. Punisher", audioUrl: baseUrl + "32.%20Punisher.mp3",
-            text: "The Punisher is a very serious and dangerous character. His real name is Frank Castle. Frank was a very brave and highly trained soldier in the army. He is not a normal superhero because he does not have any magic powers or super speed. He also does not wear a bright, colorful costume. He wears simple, dark clothes with a big, scary white skull painted right on his chest. Frank is a very tough man. He knows exactly how to use many different guns, traps, and heavy weapons. The Punisher fights against very bad criminals to protect the city. But he is very rough and angry. He does not just catch the bad guys; he hurts them very badly. Because he is so dangerous, other heroes like Spider-Man and Captain America often try to stop him. Frank believes his violent way is the only way to stop evil criminals forever.",
-            questions: []
-        },
-        {
-            id: 33, title: "33. Sabretooth", audioUrl: baseUrl + "33.%20Sabretooth.mp3",
-            text: "Sabretooth is a very wild, angry, and dangerous villain. He is the biggest and worst enemy of the hero Wolverine. Sabretooth is a special mutant who acts and fights exactly like a huge, hungry wild animal. He is a very big man, super strong, and his body is covered in thick yellow hair. He has sharp, yellow teeth and very long, sharp claws on his strong fingers. Just like his enemy Wolverine, Sabretooth has a special healing power inside his body. If he gets hurt or cut in a bad battle, his body fixes itself very quickly. He never gets tired. Sabretooth loves to hunt his enemies in the cold snow and the deep green forest. He is always looking for a big, bloody fight. He is very cruel and does not care about anyone. He is a perfect and scary match for Wolverine in a big fight.",
-            questions: []
-        },
-        {
-            id: 34, title: "34. Sandman", audioUrl: baseUrl + "34.%20Sandman.mp3",
-            text: "Sandman is a very messy and difficult villain to fight. His real name is Flint Marko. Flint was running away from the police on a beach. He accidentally fell into a big science machine. The magic machine mixed his human body with the tiny grains of sand! Now, Sandman's entire body is completely made of brown sand. He can easily change his shape into anything he wants. He can make his arms into giant, heavy sand hammers or tall, thick sand walls. If Spider-Man tries to punch his chest, Spider-Man's hand just goes right through the soft sand! He can slip under doors and fly in the wind like a dust storm. But Sandman has one big weakness. If he gets completely wet with a lot of water, his sand turns into hard, heavy mud! Then he cannot move at all, and Spider-Man can easily catch him and stop him.",
-            questions: []
-        },
-        {
-            id: 35, title: "35. Spider-Man", audioUrl: baseUrl + "35.%20Spider-Man.mp3",
-            text: "Spider-Man is one of the most famous and friendly heroes in the whole world! His real name is Peter Parker. Peter was a smart, quiet, and shy teenager who loved science. One day, a small, glowing, radioactive spider bit him on the hand. Suddenly, Peter got amazing super spider powers! He made a cool red and blue suit with a black web pattern. Spider-Man is incredibly strong and he can easily climb straight up tall glass buildings. He also invented special tools for his wrists called 'web-shooters.' He uses them to shoot long, sticky white webs. He swings high above the busy city streets on these strong webs. Spider-Man is very brave, but he is also very funny. He loves to tell jokes while he is fighting dangerous bad guys. He always tries his best to protect his neighborhood and help everyday people who are in big trouble.",
-            questions: []
-        },
-        {
-            id: 36, title: "36. Superman", audioUrl: baseUrl + "36.%20Superman.mp3",
-            text: "Superman is the strongest and most famous superhero in the world. He came to Earth in a small flying spaceship when he was a tiny baby. He is actually an alien from a different planet called Krypton. Because he is from deep space, the Earth's bright yellow sun gives him amazing and unbelievable powers. Superman wears a bright blue suit, a long red cape, and a big red 'S' on his chest. The 'S' stands for hope. He can fly super fast through the clouds. He is super strong and can lift big airplanes. He can even shoot hot red lasers from his eyes and blow freezing cold wind from his mouth! Bullets bounce right off his strong chest. Superman is very kind, polite, and always tells the truth. He uses his amazing alien powers to help everyone on Earth and stop terrible disasters from happening. He is the best.",
-            questions: []
-        },
-        {
-            id: 37, title: "37. The Wall", audioUrl: baseUrl + "37.%20The%20Wall.mp3",
-            text: "The Wall is a very strange, silly, and funny villain. His real name is Joshua Waldemeyer. Joshua was a young boy who was doing his job. He was busy building a normal brick wall at a school. Suddenly, a magical and dangerous accident happened, and he turned into the actual wall! He literally looks like a giant, walking wall made of hard red bricks. He has two legs and two arms, but his main body is just a giant, heavy rectangle of bricks. He has a funny face right in the middle of the bricks! Because he is a solid wall, he is incredibly heavy and very hard to push over. He is not very fast or smart. But he loves to cause annoying trouble. He loves to stand in the middle of the street and block Spider-Man from running! He is a very weird and silly bad guy.",
-            questions: []
-        },
-        {
-            id: 38, title: "38. Thor", audioUrl: baseUrl + "38.%20Thor.mp3",
-            text: "Thor is a very famous, powerful, and brave hero. He is the strong Prince of Asgard, a beautiful magical world hidden deep in space. Thor is a real God, so he is incredibly tall, heavy, and super strong. He has long blonde hair, wears silver armor, and has a bright red cape. Thor is the God of Thunder, which means he controls the wild weather. He can easily make dark rain clouds, heavy storms, and strike bad guys with bright, hot lightning! He carries a very special and heavy magic hammer called Mjolnir. Only a person who is completely good and pure can lift this heavy magic hammer. Thor spins his hammer very fast to fly through the air. He travels across the universe to fight scary space monsters and protect the Earth. He is a very loud, happy, and proud warrior who loves a good battle.",
-            questions: []
-        },
-        {
-            id: 39, title: "39. Tombstone", audioUrl: baseUrl + "39.%20Tombstone.mp3",
-            text: "Tombstone is a very tall, scary, and dangerous villain. His real name is Lonnie Lincoln. Lonnie was a normal man, but he had a very bad accident with a special, strange gas. Now, his skin is completely white, cold, and very, very hard. His skin is literally as hard as a real rock! Tombstone is extremely tall and he always wears nice, expensive business suits. He does not use any green magic or shoot red lasers. He is just extremely strong and very mean. Because his skin is so hard, he cannot be hurt by normal punches, heavy knives, or even fast bullets. They just bounce off him! He is a big boss of the dangerous criminals in the dark city. Spider-Man has to be very smart and very fast to beat this tough, rocky guy. Tombstone is a very difficult enemy to fight in a close battle.",
-            questions: []
-        },
-        {
-            id: 40, title: "40. Venom", audioUrl: baseUrl + "40.%20Venom.mp3",
-            text: "Venom is a very huge, dark, and scary monster. He is an enemy of Spider-Man. But Venom is not just one normal person. He is actually made of two different things! The first is Eddie Brock, a big and angry man. The second is a black, slimy alien from space called a 'symbiote.' When Eddie and the alien join together, they become the giant monster Venom! Venom looks a lot like a giant, dark Spider-Man. He has a huge mouth, very sharp teeth, and a very long, scary pink tongue. He is much bigger and much stronger than Spider-Man. He can also shoot dark, sticky webs. Sometimes Venom is a very bad villain who wants to hurt Spider-Man. But sometimes he acts like a tough hero and protects innocent people on the street. He is a very wild and confusing character who loves to eat chocolate and cause trouble.",
-            questions: []
-        },
-        {
-            id: 41, title: "41. Vision", audioUrl: baseUrl + "41.%20Vision.mp3",
-            text: "Vision is a very amazing and unique superhero. He is not a normal human being with a heart. He is a very smart and powerful robot called an android. He was originally built by bad guys, but he decided to be a good hero and help the world! Vision's robot body is bright red and green, and he wears a cool yellow cape. He has a shining yellow magic jewel right in the middle of his forehead. This special jewel gives him amazing super powers. He can shoot very hot energy beams directly from his head! Vision can also fly quietly through the air. His coolest power is changing his own robot body. He can become like a ghost and walk right through solid brick walls! Or, he can make himself extremely heavy, like a huge mountain rock. He is very calm, very smart, and a great hero.",
-            questions: []
-        },
-        {
-            id: 42, title: "42. Vulture", audioUrl: baseUrl + "42.%20Vulture.mp3",
-            text: "The Vulture is a very dangerous and old villain. He is one of Spider-Man's oldest flying enemies. His real name is Adrian Toomes. Adrian is an older man with no hair, but he is a very smart inventor. He invented a very special flying suit with big, green, metal wings. This wing suit gives him super strength and lets him fly very fast and silently in the air, exactly like a big, scary bird. The Vulture loves to fly up very high in the clouds. Then, he dives down incredibly fast from the sky to steal bags of money from banks. He grabs things with his sharp, heavy metal boots and flies away before the police arrive. Spider-Man must jump very high and use his sticky webs to catch this fast flying bad guy. The Vulture is mean, greedy, and always ready to fight Spider-Man in the sky.",
-            questions: []
-        },
-        {
-            id: 43, title: "43. Winter Soldier", audioUrl: baseUrl + "43.%20Winter%20Soldier.mp3",
-            text: "The Winter Soldier is a very tough and brave hero. His real name is Bucky Barnes. A long time ago, Bucky was a brave army soldier and Captain America's best friend. But Bucky had a terrible accident in the snowy mountains and lost his left arm. Bad guys found him and saved him. They gave him a brand new arm made of shiny, strong silver metal! This heavy metal arm makes him punch incredibly hard. For a long time, the bad guys controlled Bucky's brain, making him the dangerous and evil Winter Soldier. He did many bad things. But Captain America fought hard to help his best friend remember his real name. Now, Bucky's mind is free. The Winter Soldier is a great hero again. He uses his guns and his strong metal arm to fight for good and stop the bad guys from hurting people.",
-            questions: []
-        },
-        {
-            id: 44, title: "44. Wolverine", audioUrl: baseUrl + "44.%20Wolverine.mp3",
-            text: "Wolverine is a very famous, tough, and angry superhero. He is a very important member of the X-Men team. His real name is Logan. Wolverine is a special mutant with two amazing powers. His first power is his super healing factor. If he gets hurt, burned, or cut in a fight, his body quickly heals itself in just a few seconds. He can survive almost anything! His second power is his sharp claws. Wolverine has three long, strong metal claws hidden inside each of his hands. When he gets very angry, the sharp claws come out with a loud sound! He is a small man, but he is a very wild and dangerous fighter. He rides a motorcycle and wears a yellow and blue suit. Wolverine likes to be alone, but he will always fight very hard to protect his mutant friends and the young students at his school.",
-            questions: []
-        },
-        {
-            id: 45, title: "45. Wonder Woman", audioUrl: baseUrl + "45.%20Wonder%20Woman.mp3",
-            text: "Wonder Woman is a fantastic, beautiful, and extremely powerful superhero. Her real name is Diana. She is a brave princess from a beautiful, secret island. This island is full of strong women called Amazons. Wonder Woman is incredibly strong, almost as strong as Superman! She wears a bright red and gold top with a blue skirt. She has very special and magic tools to help her fight evil. She wears shiny silver bracelets on her arms. She uses these metal bracelets to easily block very fast bullets! She also carries a magic, glowing yellow rope. This rope is called the Lasso of Truth. If she catches a bad villain with her glowing lasso, they cannot tell a lie. They must tell her the complete truth! Wonder Woman is a great leader, a perfect fighter, and she always wants to bring peace and love to the whole world.",
-            questions: []
-        },
-        {
-            id: 46, title: "46. Catwoman", audioUrl: baseUrl + "46.%20Catwoman.mp3",
-            text: "Catwoman is a very famous and interesting character from Gotham City. Her real name is Selina Kyle. She is not a superhero, but she is not always a bad villain either. She wears a tight black leather suit with a small mask that looks like a cat. She also wears sharp claws on her fingers and carries a long whip. Catwoman loves to steal shiny diamonds, rich jewelry, and very expensive art from big museums. She moves very quietly in the dark, exactly like a real cat. She does not have any magic powers from space. But she is an amazing acrobat and can jump very high across tall buildings. Sometimes she fights against Batman because she is a thief. But sometimes, when bad things happen in the city, she helps Batman catch the really dangerous criminals. She is very smart, fast, and always does exactly what she wants to do every single day.",
-            questions: []
-        },
-        {
-            id: 47, title: "47. Bane", audioUrl: baseUrl + "47.%20Bane.mp3",
+            id: 2, title: "2. Bane", audioUrl: baseUrl + "47.%20Bane.mp3",
             text: "Bane is a very huge, strong, and dangerous villain. He is one of Batman's worst enemies in Gotham City. His real name is unknown to many people. Bane does not have magic powers, but he is incredibly smart and much stronger than a normal man. He wears dark clothes and a very scary mask over his face. This mask looks a little bit like a heavy scuba mask! He has to wear this special mask all the time because it helps him breathe a special medicine gas to stop terrible pain in his body. Bane is very dangerous because he fights very hard and he also makes very clever plans. He wants to break Batman and completely destroy the whole city. He also uses a special green liquid called Venom to make his muscles grow super big! Batman must use all his strength, speed, and his smart detective skills to stop this giant, breathing monster.",
-            questions: []
+            questions: [
+                { q: "What does Bane's mask look a little bit like?", options: ["A) A gas mask", "B) A heavy scuba mask", "C) A ski mask", "D) A clown mask"], answer: 1 },
+                { q: "What does the special medicine gas stop in Bane's body?", options: ["A) Terrible pain", "B) Getting tired", "C) Growing old", "D) Feeling cold"], answer: 0 },
+                { q: "What is the special green liquid called that makes his muscles grow?", options: ["A) Acid", "B) Potion", "C) Venom", "D) Slime"], answer: 2 },
+                { q: "What does Bane want to do to Gotham City?", options: ["A) Rule it", "B) Steal from it", "C) Completely destroy it", "D) Freeze it"], answer: 2 },
+                { q: "What must Batman use to stop this giant monster?", options: ["A) Magic powers", "B) A big army", "C) A magic shield", "D) Detective skills"], answer: 3 },
+                { q: "True/False: Bane has magic powers just like other super villains.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: Bane's real name is known to many people.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: Bane fights very hard and makes very clever plans.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: The green liquid makes his brain smarter.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: Bane is one of Batman's worst enemies.", options: ["True", "False"], answer: 0 }
+            ]
         },
         {
-            id: 48, title: "48. Riddler", audioUrl: baseUrl + "48.%20Riddler.mp3",
+            id: 3, title: "3. Batman", audioUrl: baseUrl + "2.Batman.mp3",
+            text: "Batman is a very famous and cool superhero. He lives in a big, dark place called Gotham City. His real name is Bruce Wayne. Bruce Wayne is a very rich man with a big house. But at night, he puts on a scary black mask and a long black cape. He becomes Batman! Batman does not have any magic powers from space or science. He is just a normal human being. But he is very smart, very strong, and he exercises every single day. He has a very fast, black car called the Batmobile. He also has many cool tools in his yellow belt. He uses these tools to catch bad guys. He fights dangerous criminals to keep his city safe from bad things. Many people in Gotham City are afraid of the dark, but Batman is never afraid. He is a very brave hero who always helps people in danger.",
+            questions: [
+                { q: "What does Bruce Wayne put on at night?", options: ["A) A red suit", "B) A scary black mask and a long black cape", "C) A robot suit", "D) A magic ring"], answer: 1 },
+                { q: "Where does Batman keep his cool tools?", options: ["A) In his yellow belt", "B) In his black boots", "C) In his black cape", "D) In his car"], answer: 0 },
+                { q: "How often does Batman exercise?", options: ["A) Once a week", "B) Every single day", "C) Only at night", "D) Never"], answer: 1 },
+                { q: "What is the name of his very fast, black car?", options: ["A) The Wayne-mobile", "B) The Bat-car", "C) The Batmobile", "D) The Gotham-car"], answer: 2 },
+                { q: "Why does Batman fight dangerous criminals?", options: ["A) To make money", "B) To keep his city safe", "C) To become famous", "D) To test his tools"], answer: 1 },
+                { q: "True/False: Batman has magic powers from space.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: Bruce Wayne is a very rich man with a big house.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: Many people in Gotham City are afraid of the dark.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: Batman is often afraid of the dark too.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: Batman is just a normal human being.", options: ["True", "False"], answer: 0 }
+            ]
+        },
+        {
+            id: 4, title: "4. Captain America", audioUrl: baseUrl + "3.%20Captain%20America.mp3",
+            text: "Captain America is a very famous and brave superhero. His real name is Steve Rogers. A long time ago, Steve was a very small and weak man. He was not strong, but he wanted to help people and fight bad guys. A smart doctor gave him a special medicine. The medicine changed his body. It made him very big, fast, and incredibly strong! Now, Captain America wears a very cool suit. His suit is red, white, and blue, just like a flag. He also carries a big, round shield. His shield is very heavy and made of a special metal. Nothing in the world can break his magic shield. He throws his shield to catch the bad guys, and the shield always comes back to his hand. Captain America is a great leader. He always tells his friends to do the right thing. He is a true hero for everyone.",
+            questions: [
+                { q: "What did a smart doctor give to Steve Rogers?", options: ["A) A magic shield", "B) A special medicine", "C) A metal suit", "D) A heavy hammer"], answer: 1 },
+                { q: "What colors are Captain America's suit?", options: ["A) Red, black, and gold", "B) Blue, green, and white", "C) Red, white, and blue", "D) Silver and blue"], answer: 2 },
+                { q: "What happens when he throws his big, round shield?", options: ["A) It explodes", "B) It turns into a weapon", "C) It breaks big walls", "D) It always comes back to his hand"], answer: 3 },
+                { q: "What was Steve Rogers like a long time ago?", options: ["A) A very small and weak man", "B) A rich genius", "C) A big soldier", "D) A fast runner"], answer: 0 },
+                { q: "What does Captain America always tell his friends to do?", options: ["A) Run away", "B) Do the right thing", "C) Fight hard", "D) Hide in the dark"], answer: 1 },
+                { q: "True/False: Captain America's shield is made of a very light plastic.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: Nothing in the world can break his magic shield.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: Captain America's real name is Tony Stark.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: The medicine changed his body to make him big, fast, and strong.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: He is described as a terrible leader.", options: ["True", "False"], answer: 1 }
+            ]
+        },
+        {
+            id: 5, title: "5. Carnage", audioUrl: baseUrl + "4.%20Carnage.mp3",
+            text: "Carnage is a very scary and dangerous villain. He is a big enemy of Spider-Man and Venom. Carnage looks like a tall man, but he is actually a monster from space. His body is made of a strange, wet liquid. This liquid is bright red and black. Because his body is liquid, he can change his shape easily. He can change his hands into very sharp weapons, like long swords and heavy axes. Carnage is extremely fast and very strong. He can climb up tall walls and jump between big buildings like a spider. He does not care about anyone. He only loves to create trouble and break things in the city. Spider-Man has to work very hard and be very careful to stop this scary red monster. Carnage is wild, angry, and very hard to catch. He is one of the worst bad guys in the comic books.",
+            questions: [
+                { q: "What is Carnage's body made of?", options: ["A) Hard red bricks", "B) A strange, wet liquid", "C) Hot metal", "D) Brown sand"], answer: 1 },
+                { q: "What colors is Carnage's body?", options: ["A) Bright red and black", "B) Dark blue and red", "C) Green and yellow", "D) Silver and black"], answer: 0 },
+                { q: "What weapons can Carnage change his hands into?", options: ["A) Guns and bombs", "B) Long swords and heavy axes", "C) Whips and ropes", "D) Shields and hammers"], answer: 1 },
+                { q: "What does Carnage love to do in the city?", options: ["A) Steal diamonds", "B) Create trouble and break things", "C) Hide in the shadows", "D) Trick people with magic"], answer: 1 },
+                { q: "Who does Carnage look like, but is actually a monster from space?", options: ["A) A tall man", "B) A giant spider", "C) A wild animal", "D) A big robot"], answer: 0 },
+                { q: "True/False: Carnage is a big enemy of Spider-Man and Venom.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: Carnage is very slow and weak.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: He can climb up tall walls and jump like a spider.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: Carnage loves to protect the innocent people in the city.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: He cannot change his shape easily because he is solid.", options: ["True", "False"], answer: 1 }
+            ]
+        },
+        {
+            id: 6, title: "6. Catwoman", audioUrl: baseUrl + "46.%20Catwoman.mp3",
+            text: "Catwoman is a very famous and interesting character from Gotham City. Her real name is Selina Kyle. She is not a superhero, but she is not always a bad villain either. She wears a tight black leather suit with a small mask that looks like a cat. She also wears sharp claws on her fingers and carries a long whip. Catwoman loves to steal shiny diamonds, rich jewelry, and very expensive art from big museums. She moves very quietly in the dark, exactly like a real cat. She does not have any magic powers from space. But she is an amazing acrobat and can jump very high across tall buildings. Sometimes she fights against Batman because she is a thief. But sometimes, when bad things happen in the city, she helps Batman catch the really dangerous criminals. She is very smart, fast, and always does exactly what she wants to do every single day.",
+            questions: [
+                { q: "What does Catwoman wear on her fingers?", options: ["A) Gold rings", "B) Sharp claws", "C) Magic jewels", "D) Heavy metal"], answer: 1 },
+                { q: "What does Catwoman love to steal from big museums?", options: ["A) Money and gold", "B) Shiny diamonds, rich jewelry, and expensive art", "C) Secret weapons", "D) Important documents"], answer: 1 },
+                { q: "What weapon does Catwoman carry with her?", options: ["A) A long whip", "B) A heavy sword", "C) A small gun", "D) A wooden bat"], answer: 0 },
+                { q: "Why does she sometimes fight against Batman?", options: ["A) Because she hates him", "B) Because she is a thief", "C) Because the Joker tells her to", "D) Because she wants to rule the city"], answer: 1 },
+                { q: "What is Catwoman's real name?", options: ["A) Selina Kyle", "B) Felicia Hardy", "C) Diana", "D) Harley Quinn"], answer: 0 },
+                { q: "True/False: Catwoman has magic powers from space.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: She wears a tight black leather suit.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: She is always a bad villain.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: She moves very quietly in the dark, exactly like a real cat.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: She is a terrible acrobat and cannot jump high.", options: ["True", "False"], answer: 1 }
+            ]
+        },
+        {
+            id: 7, title: "7. Craven (Kraven)", audioUrl: baseUrl + "5.%20Craven%20(Kraven).mp3",
+            text: "Kraven is a very dangerous villain. People also call him Kraven the Hunter. Kraven comes from a cold place, but he loves to travel everywhere. He is a very good tracker. He loves to hunt wild animals in the deep green jungle. But Kraven's favorite thing to hunt is not an animal. He wants to hunt Spider-Man! Kraven does not use magic or big guns. Instead, he drinks special potions made from jungle plants. These magic drinks make him as fast as a running cheetah. They also make him as strong as a big, angry lion. He wears a very crazy suit made of real animal skin. He wants to catch Spider-Man to prove a point. Kraven wants everyone to know that he is the best and strongest hunter in the whole world. He is very quiet and very fast, so Spider-Man must always be ready for a big fight.",
+            questions: [
+                { q: "What does Kraven drink instead of using magic or big guns?", options: ["A) Venom", "B) Special potions made from jungle plants", "C) A secret green chemical", "D) Freezing ice chemicals"], answer: 1 },
+                { q: "What animal does Kraven become as fast as?", options: ["A) A cheetah", "B) A lion", "C) A panther", "D) A tiger"], answer: 0 },
+                { q: "What is Kraven's favorite thing to hunt?", options: ["A) Wild lions", "B) Rich criminals", "C) Spider-Man", "D) Batman"], answer: 2 },
+                { q: "What is his crazy suit made of?", options: ["A) Tight black leather", "B) Real animal skin", "C) Heavy metal", "D) Green magic"], answer: 1 },
+                { q: "What does Kraven want everyone to know?", options: ["A) That he is very rich", "B) That he is a smart scientist", "C) That he is the best and strongest hunter", "D) That he has magic powers"], answer: 2 },
+                { q: "True/False: Kraven comes from a very hot desert place.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: People also call him Kraven the Hunter.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: The magic drinks make him as strong as a big, angry lion.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: Kraven is very loud and slow when he moves.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: He loves to travel everywhere.", options: ["True", "False"], answer: 0 }
+            ]
+        },
+        {
+            id: 8, title: "8. Cyclops", audioUrl: baseUrl + "6.%20Cyclops.mp3",
+            text: "Cyclops is a very brave hero and a great leader. He leads a famous team of mutant heroes called the X-Men. His real name is Scott Summers. Cyclops has a very amazing but dangerous power. He shoots bright red laser beams right out of his eyes! These red lasers are very hot and incredibly strong. They can break big rocks and heavy metal doors. But there is a big problem with his power. Cyclops cannot turn his red lasers off. If he opens his eyes, the red beams shoot out and destroy everything in front of him. So, he must always wear special glasses made of red glass. Sometimes he wears a special battle mask. These glasses and masks keep his powerful laser eyes safe. He works hard to protect his mutant friends and all the normal people. He is a smart teacher and a very strong hero for his team.",
+            questions: [
+                { q: "What does Cyclops shoot right out of his eyes?", options: ["A) Hot fire", "B) Bright red laser beams", "C) Yellow lightning", "D) Cold ice"], answer: 1 },
+                { q: "What is the name of the mutant team he leads?", options: ["A) The Avengers", "B) The X-Men", "C) The Defenders", "D) The Spider-Team"], answer: 1 },
+                { q: "What happens if Cyclops takes off his special glasses?", options: ["A) He cannot see anything", "B) He loses his powers", "C) The red beams destroy everything in front of him", "D) He becomes a normal human"], answer: 2 },
+                { q: "What are his special glasses made of?", options: ["A) Thick plastic", "B) Red glass", "C) Strong metal", "D) Dark magic"], answer: 1 },
+                { q: "What is Cyclops's real name?", options: ["A) Scott Summers", "B) Steve Rogers", "C) Peter Parker", "D) Logan"], answer: 0 },
+                { q: "True/False: Cyclops can easily turn his red lasers off whenever he wants.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: His laser beams can break big rocks and heavy metal doors.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: Cyclops is described as a brave hero and a great leader.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: Sometimes he wears a special battle mask instead of glasses.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: He uses his powers to hurt normal people.", options: ["True", "False"], answer: 1 }
+            ]
+        },
+        {
+            id: 9, title: "9. Deadpool", audioUrl: baseUrl + "7.%20Deadpool.mp3",
+            text: "Deadpool is a very funny and crazy character. His real name is Wade Wilson. Deadpool wears a cool suit that is bright red and black. His suit covers his whole body and his face. He is very strong and runs very fast. He carries two sharp swords on his back and many other weapons. But Deadpool has one power that is the best of all. He has a super healing body. If he gets hurt in a bad fight, his body fixes itself very quickly. He can never get sick and it is very hard to defeat him. Deadpool is very different from other normal heroes. He loves to talk all the time and make silly jokes, even during a dangerous fight! Sometimes he acts like a good hero, and sometimes he just wants to have fun. He is wild, loud, and he always makes the other heroes feel very annoyed.",
+            questions: [
+                { q: "What colors is Deadpool's cool suit?", options: ["A) Blue and red", "B) Bright red and black", "C) Green and yellow", "D) White and silver"], answer: 1 },
+                { q: "What does Deadpool carry on his back?", options: ["A) A big, round shield", "B) Two sharp swords", "C) A heavy hammer", "D) A long whip"], answer: 1 },
+                { q: "What is Deadpool's best power?", options: ["A) A super healing body", "B) Super speed", "C) Flying high", "D) Shooting lasers"], answer: 0 },
+                { q: "What does Deadpool love to do during a dangerous fight?", options: ["A) Hide in the dark", "B) Talk all the time and make silly jokes", "C) Run away", "D) Take pictures"], answer: 1 },
+                { q: "How does Deadpool usually make other heroes feel?", options: ["A) Very happy", "B) Very proud", "C) Very annoyed", "D) Very scared"], answer: 2 },
+                { q: "True/False: Deadpool's real name is Wade Wilson.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: His body cannot fix itself quickly if he gets hurt.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: He never gets sick.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: Deadpool always acts exactly like a good hero.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: His suit covers his whole body and his face.", options: ["True", "False"], answer: 0 }
+            ]
+        },
+        {
+            id: 10, title: "10. Dr Octopus", audioUrl: baseUrl + "8.%20Dr%20Octopus.mp3",
+            text: "Dr. Octopus is a very smart and very bad villain. His real name is Otto Octavius. He is a brilliant scientist who loves to build new machines. One day, he was working in his laboratory. Suddenly, there was a terrible accident with his machine. Now, he has four long, metal robot arms permanently connected to his back! Because he has four robot arms and two human arms, people call him Dr. Octopus. These silver metal arms are incredibly strong. They can easily crush heavy cars and climb up very tall glass buildings. The robot arms move very fast and obey his brain. He uses his robot arms to steal money from banks and fight Spider-Man. Dr. Octopus is very dangerous because he is a genius. He always makes clever plans to defeat the heroes. Spider-Man must use all his speed and his sticky webs to stop this smart scientist.",
+            questions: [
+                { q: "How many long, metal robot arms are connected to his back?", options: ["A) Two", "B) Four", "C) Six", "D) Eight"], answer: 1 },
+                { q: "What do the robot arms obey?", options: ["A) A remote control", "B) A computer", "C) His brain", "D) Spider-Man"], answer: 2 },
+                { q: "What does Dr. Octopus use his robot arms to do?", options: ["A) Build houses", "B) Steal money from banks and fight Spider-Man", "C) Help innocent people", "D) Clean the city"], answer: 1 },
+                { q: "What color are his metal robot arms described as?", options: ["A) Silver", "B) Gold", "C) Black", "D) Red"], answer: 0 },
+                { q: "Why is Dr. Octopus very dangerous?", options: ["A) Because he has magic powers", "B) Because he is a genius", "C) Because he is invisible", "D) Because he runs fast"], answer: 1 },
+                { q: "True/False: Dr. Octopus's real name is Otto Octavius.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: He was a brilliant scientist who had a terrible accident in his lab.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: The robot arms are very weak and slow.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: He uses his arms to climb up very tall glass buildings.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: Spider-Man must use ice and cold to stop him.", options: ["True", "False"], answer: 1 }
+            ]
+        },
+        {
+            id: 11, title: "11. Electro", audioUrl: baseUrl + "9.%20Electro.mp3",
+            text: "Electro is a very bright and shocking villain! He is a dangerous enemy of Spider-Man. Electro's real name is Max Dillon. One day, Max was doing his job. He was fixing some electric power lines high in the air. Suddenly, there was a big storm, and yellow lightning hit him directly! But the hot lightning did not hurt him at all. Instead, it gave him amazing super powers. Now, Electro's whole body is full of pure electricity. He can shoot bright yellow and blue lightning bolts from his hands! He can fly through the air using pure electric energy. He can even turn off all the lights and power in the whole city. He wants to steal money and cause big problems. Spider-Man has to be very careful when he fights him. If Spider-Man gets too close, he will get a very bad electric shock from this bright yellow villain!",
+            questions: [
+                { q: "What was Max Dillon fixing when the accident happened?", options: ["A) A science machine", "B) Electric power lines", "C) A broken car", "D) A tall building"], answer: 1 },
+                { q: "What hit Max directly during a big storm?", options: ["A) A meteor", "B) Yellow lightning", "C) Hot fire", "D) A heavy rock"], answer: 1 },
+                { q: "What colors are the lightning bolts he shoots from his hands?", options: ["A) Bright yellow and blue", "B) Red and orange", "C) Green and purple", "D) White and silver"], answer: 0 },
+                { q: "How can Electro fly through the air?", options: ["A) Using big metal wings", "B) Using pure electric energy", "C) Using a goblin glider", "D) Using rockets in his boots"], answer: 1 },
+                { q: "What happens if Spider-Man gets too close to Electro?", options: ["A) He gets frozen", "B) He gets a very bad electric shock", "C) He turns into a spider", "D) His webs melt"], answer: 1 },
+                { q: "True/False: Electro's whole body is full of pure electricity.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: The hot lightning hurt him very badly.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: Electro can turn off all the lights and power in the whole city.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: Electro is a very good friend of Spider-Man.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: Electro wants to steal money and cause big problems.", options: ["True", "False"], answer: 0 }
+            ]
+        },
+        {
+            id: 12, title: "12. Falcon", audioUrl: baseUrl + "10.%20Falcon.mp3",
+            text: "Falcon is a great superhero and a very good friend. He is the best partner of Captain America. His real name is Sam Wilson. Sam does not have any magic powers from space or science. He is a brave soldier who wants to help people. He wears a very special and cool suit. His suit has big, robotic wings made of strong metal. When Sam puts on his wing suit, he can fly very high in the clouds just like a real bird! He is very fast in the sky. He also has a small robot bird named Redwing. Redwing flies around the city and uses cameras to help Falcon. Redwing can see where the bad guys are hiding in secret places. Falcon uses his flying skills and his robot bird to stop criminals. He is a fast, smart, and fantastic hero who always does the right thing.",
+            questions: [
+                { q: "Who is Falcon's best partner?", options: ["A) Iron Man", "B) Spider-Man", "C) Captain America", "D) Thor"], answer: 2 },
+                { q: "What are Falcon's robotic wings made of?", options: ["A) Strong metal", "B) Real bird feathers", "C) Light plastic", "D) Heavy rocks"], answer: 0 },
+                { q: "What is the name of Falcon's small robot bird?", options: ["A) Bluebird", "B) Redwing", "C) Silverhawk", "D) Blackbird"], answer: 1 },
+                { q: "What does the robot bird use to help Falcon?", options: ["A) Lasers", "B) Cameras", "C) Magic", "D) Sticky webs"], answer: 1 },
+                { q: "What is Falcon's real name?", options: ["A) Steve Rogers", "B) Tony Stark", "C) Sam Wilson", "D) Bruce Wayne"], answer: 2 },
+                { q: "True/False: Falcon has magic powers from space.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: Sam is a brave soldier who wants to help people.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: He can fly very high in the clouds just like a real bird.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: Redwing hides in secret places to attack bad guys.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: Falcon is described as a fast, smart, and fantastic hero.", options: ["True", "False"], answer: 0 }
+            ]
+        },
+        {
+            id: 13, title: "13. Felicia Hardy (Black Cat)", audioUrl: baseUrl + "11.%20Felicia%20Hardy%20(Black%20Cat).mp3",
+            text: "Felicia Hardy is a very interesting and tricky character. She is also known as the Black Cat. Felicia is not always a bad guy, but she is not always a good guy either! She wears a black leather suit and a small black mask over her eyes. She is a famous thief. She loves to steal shiny diamonds, rich jewelry, and lots of money. She moves very quietly, exactly like a real cat. Felicia does not have big super powers like flying or lasers. However, she is an amazing gymnast. She can jump very high across rooftops and run very fast. She also has a very secret magic power. She brings 'bad luck' to all her enemies. When bad guys try to fight her, they always fall down, drop their weapons, or make silly mistakes! Spider-Man never knows if he should catch her or be her good friend.",
+            questions: [
+                { q: "What does Felicia Hardy love to steal?", options: ["A) Only money", "B) Fast cars and boats", "C) Shiny diamonds, rich jewelry, and lots of money", "D) Important science secrets"], answer: 2 },
+                { q: "What kind of suit does she wear?", options: ["A) A tight red suit", "B) A green and gold suit", "C) A black leather suit", "D) A shiny silver suit"], answer: 2 },
+                { q: "What amazing physical skill does Felicia have?", options: ["A) She is an amazing swimmer", "B) She is an amazing gymnast", "C) She is a super fast runner", "D) She can fly"], answer: 1 },
+                { q: "What secret magic power does she have?", options: ["A) She controls minds", "B) She brings 'bad luck' to all her enemies", "C) She can turn invisible", "D) She shoots lasers"], answer: 1 },
+                { q: "What happens when bad guys try to fight her?", options: ["A) They freeze", "B) They fall down, drop weapons, or make mistakes", "C) They forget who they are", "D) They run away scared"], answer: 1 },
+                { q: "True/False: Felicia Hardy is always a good guy.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: She moves very quietly, exactly like a real cat.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: She has big super powers like flying.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: Spider-Man always knows exactly how to treat her.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: She wears a small black mask over her eyes.", options: ["True", "False"], answer: 0 }
+            ]
+        },
+        {
+            id: 14, title: "14. Flash", audioUrl: baseUrl + "12.%20Flash.mp3",
+            text: "The Flash is a very famous and exciting superhero. He is known as the fastest man in the whole world! His real name is Barry Allen. Barry was a normal man working in a police science lab. One night, yellow lightning hit some dangerous chemicals. The chemicals splashed all over him, and a miracle happened. He got the power of super speed! The Flash wears a bright red suit with a yellow lightning bolt right on his chest. He can run much faster than a fast sports car. He can run so fast that nobody can see him. He can even run across deep water without sinking! He uses his amazing speed to save people who are in danger. He can run across the city in one second to stop villains before they can escape. The Flash is always happy, very brave, and he is always ready to run and help.",
+            questions: [
+                { q: "What did Barry Allen work in?", options: ["A) A hospital", "B) A police science lab", "C) A big bank", "D) A high school"], answer: 1 },
+                { q: "What splashed all over Barry when yellow lightning hit?", options: ["A) Dangerous chemicals", "B) Hot water", "C) Green venom", "D) Strange liquid"], answer: 0 },
+                { q: "What is painted right on the chest of Flash's bright red suit?", options: ["A) A white star", "B) A yellow lightning bolt", "C) A black spider", "D) A big 'S'"], answer: 1 },
+                { q: "What amazing thing can the Flash do on deep water?", options: ["A) He can freeze it", "B) He can run across it without sinking", "C) He can swim super fast", "D) He can talk to the fish"], answer: 1 },
+                { q: "What does he use his amazing speed to do?", options: ["A) Win races", "B) Save people who are in danger", "C) Travel the world", "D) Deliver packages"], answer: 1 },
+                { q: "True/False: The Flash is known as the fastest man in the whole world.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: Barry Allen was an alien from a different planet.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: He can run much faster than a fast sports car.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: He runs so fast that nobody can see him.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: The Flash is always sad and serious.", options: ["True", "False"], answer: 1 }
+            ]
+        },
+        {
+            id: 15, title: "15. Ghost Rider", audioUrl: baseUrl + "13.%20Ghost%20Rider.mp3",
+            text: "Ghost Rider is a very spooky and scary superhero. He rides a very fast and loud motorcycle through the dark streets. But this is not a normal motorcycle. Its big wheels are made of bright, hot, orange fire! Ghost Rider is not a normal man, either. When he is angry, his head turns into a scary white skeleton skull. His skull is completely covered in bright fire! He wears a black leather jacket and carries a long, heavy metal chain. Ghost Rider might look like a very bad monster, but he is actually a good hero. He uses his magic fire and his heavy chain to catch very bad criminals at night. He wants to punish the bad guys for doing terrible things. Normal people are sometimes afraid of him, but Ghost Rider always protects innocent people. He fights evil monsters and keeps the dark city safe from danger.",
+            questions: [
+                { q: "What are the big wheels of his motorcycle made of?", options: ["A) Black rubber", "B) Bright, hot, orange fire", "C) Heavy metal", "D) Solid ice"], answer: 1 },
+                { q: "What does his head turn into when he is angry?", options: ["A) A giant spider", "B) A spooky green monster", "C) A scary white skeleton skull", "D) A block of ice"], answer: 2 },
+                { q: "What weapon does Ghost Rider carry?", options: ["A) A heavy sword", "B) A long whip", "C) A long, heavy metal chain", "D) A sharp trident"], answer: 2 },
+                { q: "What does Ghost Rider wear?", options: ["A) A black leather jacket", "B) A red cape", "C) A shiny metal suit", "D) A green hood"], answer: 0 },
+                { q: "Why does Ghost Rider catch criminals at night?", options: ["A) To steal their money", "B) To punish the bad guys for doing terrible things", "C) To take them to another planet", "D) To scare Batman"], answer: 1 },
+                { q: "True/False: Ghost Rider is actually a very bad monster.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: His skull is completely covered in bright fire.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: Normal people are never afraid of him.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: He protects innocent people and keeps the city safe.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: He rides a very fast and loud motorcycle.", options: ["True", "False"], answer: 0 }
+            ]
+        },
+        {
+            id: 16, title: "16. Green Goblin", audioUrl: baseUrl + "14.%20Green%20Goblin.mp3",
+            text: "The Green Goblin is a very scary and famous villain. He is Spider-Man's biggest and worst enemy. His real name is Norman Osborn. Norman was a very rich and smart businessman. He drank a secret green chemical because he wanted to be strong. The chemical made him very strong, but it also made his brain crazy! Now, he wears a scary, green monster costume and a creepy mask. He flies high around the city on a fast machine called a goblin glider. The Green Goblin loves to cause terrible trouble. He loves to throw small, round bombs at people and buildings. His dangerous bombs look exactly like little orange pumpkins! He laughs a very loud and scary laugh when he flies in the sky. He hates Spider-Man very much. He always makes evil plans to destroy Spider-Man's life and hurt his best friends. He is a very evil man.",
+            questions: [
+                { q: "What was Norman Osborn before he became a villain?", options: ["A) A poor scientist", "B) A very rich and smart businessman", "C) A normal soldier", "D) A police officer"], answer: 1 },
+                { q: "Why did Norman drink the secret green chemical?", options: ["A) Because he wanted to be strong", "B) Because he was very sick", "C) Because he wanted to fly", "D) Because he was thirsty"], answer: 0 },
+                { q: "What happened to his brain after he drank the chemical?", options: ["A) It became super smart", "B) It became crazy", "C) It stopped working", "D) He learned to read minds"], answer: 1 },
+                { q: "What do his dangerous bombs look exactly like?", options: ["A) Little red apples", "B) Little orange pumpkins", "C) Small green leaves", "D) Tiny black spiders"], answer: 1 },
+                { q: "What is the fast machine he flies around on called?", options: ["A) A bat-glider", "B) A hoverboard", "C) A goblin glider", "D) A flying broom"], answer: 2 },
+                { q: "True/False: The Green Goblin is Spider-Man's biggest and worst enemy.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: He laughs a very quiet laugh when he flies in the sky.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: He wears a scary, green monster costume.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: He tries to protect Spider-Man's best friends.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: He loves to throw small, round bombs at people and buildings.", options: ["True", "False"], answer: 0 }
+            ]
+        },
+        {
+            id: 17, title: "17. Harley Quinn", audioUrl: baseUrl + "15.%20Harley%20Quinn.mp3",
+            text: "Harley Quinn is a very famous and colorful villain from Gotham City. She is the Joker's best friend and helper. Harley is very crazy and she loves to laugh loudly. She usually wears bright red and black clothes. She paints her face white and ties her hair in two colorful ponytails. Sometimes her hair is pink and blue. Harley does not have any magic powers or super strength. But she is a great gymnast and acrobat. She can jump, flip, and run very fast. She loves to carry dangerous toys. Her favorite weapon is a giant wooden baseball bat or a very big wooden hammer. She uses her toys to break things, hit people, and fight against Batman. She thinks fighting and destroying things is just a very funny game! Harley is wild, loud, and always ready to make a big mess in the city.",
+            questions: [
+                { q: "Who is Harley Quinn's best friend and helper?", options: ["A) Batman", "B) Catwoman", "C) The Joker", "D) The Penguin"], answer: 2 },
+                { q: "What colors does Harley usually wear?", options: ["A) Bright red and black", "B) Green and purple", "C) Pink and blue", "D) Black and white"], answer: 0 },
+                { q: "What is Harley's favorite weapon?", options: ["A) A magic shield", "B) A giant wooden baseball bat or a big wooden hammer", "C) A gun that shoots ice", "D) A sharp sword"], answer: 1 },
+                { q: "What color does she paint her face?", options: ["A) Green", "B) Red", "C) White", "D) Black"], answer: 2 },
+                { q: "What does Harley think fighting and destroying things is?", options: ["A) A serious job", "B) A very funny game", "C) A terrible mistake", "D) A science experiment"], answer: 1 },
+                { q: "True/False: Harley Quinn has strong magic powers.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: She is a great gymnast and acrobat.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: She usually ties her hair in two colorful ponytails.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: She uses her toys to help Batman.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: Harley is very quiet and loves peace.", options: ["True", "False"], answer: 1 }
+            ]
+        },
+        {
+            id: 18, title: "18. Hobgoblin", audioUrl: baseUrl + "16.%20Hobgoblin.mp3",
+            text: "The Hobgoblin is a very scary and dangerous villain. He looks a lot like the Green Goblin, but he is a different person. He wears a bright yellow cape and a dark orange hood over his creepy monster mask. The Hobgoblin is a very greedy and bad man. He loves to steal money and he wants to have a lot of power in the city. Just like the Green Goblin, he flies fast through the air on a metal glider machine. He also throws the exact same exploding pumpkin bombs to destroy cars and buildings! But the Hobgoblin is usually smarter and much more careful than the Green Goblin. He likes to hide in the dark shadows and trick other bad guys into helping him. He uses his sharp brain to make clever and evil plans. He is a very tricky and difficult enemy for Spider-Man to catch.",
+            questions: [
+                { q: "What colors does the Hobgoblin wear?", options: ["A) A green cape and purple hood", "B) A bright yellow cape and a dark orange hood", "C) A red cape and black hood", "D) A silver suit"], answer: 1 },
+                { q: "What does the Hobgoblin throw to destroy cars and buildings?", options: ["A) Ice spears", "B) Exploding pumpkin bombs", "C) Sharp boomerangs", "D) Laser beams"], answer: 1 },
+                { q: "How is the Hobgoblin usually different from the Green Goblin?", options: ["A) He is stronger", "B) He is usually smarter and much more careful", "C) He is faster", "D) He uses a different glider"], answer: 1 },
+                { q: "What does the Hobgoblin love to steal?", options: ["A) Diamonds", "B) Secret potions", "C) Money", "D) Magic tools"], answer: 2 },
+                { q: "What does he like to do to other bad guys?", options: ["A) Trick them into helping him", "B) Fight them", "C) Put them in jail", "D) Give them money"], answer: 0 },
+                { q: "True/False: The Hobgoblin is the exact same person as the Green Goblin.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: He flies fast through the air on a metal glider machine.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: He likes to hide in the bright sunlight.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: He is a very tricky and difficult enemy for Spider-Man to catch.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: He uses a sharp brain to make clever and evil plans.", options: ["True", "False"], answer: 0 }
+            ]
+        },
+        {
+            id: 19, title: "19. Hydroman", audioUrl: baseUrl + "17.%20Hydroman%20(Hydro-Man).mp3",
+            text: "Hydro-Man is a very wet and dangerous villain. His real name is Morris Bench. Morris was a normal sailor working on a big cargo boat. One day, he fell into the deep blue ocean. At the same time, a special machine was testing strong energy in the water. The strange energy changed his body completely. Now, Morris's entire body is made of moving water! He can turn his arms into giant water hoses and shoot heavy water at people. He can create huge waves to wash Spider-Man away down the street. Hydro-Man can even turn into a small puddle of water and hide quietly on the floor! He is a very difficult villain for heroes to fight. If Spider-Man tries to punch him, his hand just goes right through the water! Spider-Man must use science, heat, or cold ice to stop this dangerous and wet bad guy.",
+            questions: [
+                { q: "What was Morris Bench's job before the accident?", options: ["A) A scientist", "B) A normal sailor on a cargo boat", "C) A police officer", "D) A deep sea diver"], answer: 1 },
+                { q: "What is Morris's entire body made of now?", options: ["A) Bright yellow lightning", "B) Hot golden metal", "C) Moving water", "D) Brown sand"], answer: 2 },
+                { q: "What can he turn his arms into to shoot heavy water?", options: ["A) Giant water hoses", "B) Sharp ice swords", "C) Huge nets", "D) Magic ropes"], answer: 0 },
+                { q: "What happens if Spider-Man tries to punch him?", options: ["A) Spider-Man gets shocked", "B) His hand goes right through the water", "C) Spider-Man gets burned", "D) Spider-Man's hand gets stuck"], answer: 1 },
+                { q: "What must Spider-Man use to stop Hydro-Man?", options: ["A) Only strong webs", "B) Sharp weapons", "C) Science, heat, or cold ice", "D) Heavy rocks"], answer: 2 },
+                { q: "True/False: Hydro-Man can turn into a small puddle of water and hide quietly on the floor.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: A special machine was testing strong energy in the water when he fell in.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: Hydro-Man is a very easy villain for heroes to fight.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: He creates huge waves to wash Spider-Man away down the street.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: He fell into a small swimming pool.", options: ["True", "False"], answer: 1 }
+            ]
+        },
+        {
+            id: 20, title: "20. Iceman", audioUrl: baseUrl + "18.%20Iceman.mp3",
+            text: "Iceman is a very cool hero and an important member of the X-Men team. His real name is Bobby Drake. Bobby is a special mutant with an amazing and fun power. He can easily control ice, cold wind, and white snow. He can make the warm air extremely cold in just one second. When he uses his strong power, his whole body turns into solid, clear blue ice! Iceman can shoot sharp ice arrows right from his hands. He can also create long, slippery ice slides high in the sky. He slides on these ice paths very fast, exactly like a skilled skateboarder or surfer. Iceman loves to make jokes and have fun with his friends. But when bad guys attack, he is very brave and serious. He uses his freezing ice powers to protect his mutant team and stop dangerous villains from hurting innocent people.",
+            questions: [
+                { q: "What team is Bobby Drake an important member of?", options: ["A) The Avengers", "B) The X-Men", "C) The Fantastic Four", "D) The Defenders"], answer: 1 },
+                { q: "What can Iceman shoot right from his hands?", options: ["A) Red laser beams", "B) Sticky webs", "C) Sharp ice arrows", "D) Hot fire"], answer: 2 },
+                { q: "What does Iceman create high in the sky to travel fast?", options: ["A) Long, slippery ice slides", "B) Big ice bridges", "C) Ice cars", "D) Ice rockets"], answer: 0 },
+                { q: "What happens to his body when he uses his strong power?", options: ["A) It turns invisible", "B) It turns into solid, clear blue ice", "C) It gets very hot", "D) It turns into sand"], answer: 1 },
+                { q: "What does Iceman love to do with his friends?", options: ["A) Fight them", "B) Ignore them", "C) Make jokes and have fun", "D) Read books quietly"], answer: 2 },
+                { q: "True/False: Bobby Drake can make warm air extremely cold in just one second.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: He slides on ice paths exactly like a skilled skateboarder or surfer.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: He uses his powers to steal money.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: When bad guys attack, Iceman is very brave and serious.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: Iceman controls ice, cold wind, and hot fire.", options: ["True", "False"], answer: 1 }
+            ]
+        },
+        {
+            id: 21, title: "21. Iron Man", audioUrl: baseUrl + "19.%20Iron%20Man.mp3",
+            text: "Iron Man is a very famous and amazing superhero. His real name is Tony Stark. Tony Stark is a brilliant genius. That means he is incredibly smart and knows everything about science! He does not have any magic powers from space. Instead, he builds amazing robot suits in his big laboratory. His favorite and best suit is painted bright red and shiny gold. When Tony wears this heavy metal suit, he becomes super strong. He can lift heavy cars and break big walls. He can fly very high in the sky using loud rockets hidden in his boots. The Iron Man suit also shoots bright energy beams directly from its hands. Tony Stark uses his money, his smart brain, and his fantastic technology to save the world! He is a great leader and he always tries to protect the Earth from aliens and bad villains.",
+            questions: [
+                { q: "What does it mean that Tony Stark is a brilliant genius?", options: ["A) He has magic powers", "B) He is incredibly smart and knows everything about science", "C) He can lift heavy cars easily", "D) He is an alien"], answer: 1 },
+                { q: "What colors is Tony's favorite and best suit painted?", options: ["A) Bright red and shiny gold", "B) Silver and black", "C) Red, white, and blue", "D) Green and yellow"], answer: 0 },
+                { q: "How does Iron Man fly very high in the sky?", options: ["A) With a glider", "B) Using magic", "C) Using loud rockets hidden in his boots", "D) With big robotic wings"], answer: 2 },
+                { q: "What does the Iron Man suit shoot directly from its hands?", options: ["A) Sharp arrows", "B) Bright energy beams", "C) Sticky webs", "D) Solid ice"], answer: 1 },
+                { q: "Who does Iron Man try to protect the Earth from?", options: ["A) Only normal thieves", "B) Aliens and bad villains", "C) The police", "D) The X-Men"], answer: 1 },
+                { q: "True/False: Iron Man has amazing magic powers from space.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: He builds amazing robot suits in his big laboratory.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: When he wears the suit, he becomes super strong.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: Tony Stark is a terrible leader.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: He uses his money, smart brain, and technology to save the world.", options: ["True", "False"], answer: 0 }
+            ]
+        },
+        {
+            id: 22, title: "22. Jean Grey", audioUrl: baseUrl + "20.%20Jean%20Grey.mp3",
+            text: "Jean Grey is a very powerful and important superhero. She is a brave member of the X-Men team. Jean looks like a normal human woman with bright red hair, but she has incredible magic powers inside her mind. Her first power is moving things with her brain. She can easily lift heavy cars, stop a flying bullet, or move big rocks just by thinking about it! She never needs to touch anything with her hands. Her second power is reading minds. She can hear exactly what other people are thinking and feeling. Sometimes, Jean has a very special and fiery energy inside her body. This bright energy is called the Phoenix. When she uses the Phoenix energy, she becomes one of the strongest heroes in the whole universe. She is very kind and always tries to use her strong mind to help her good friends and protect the world.",
+            questions: [
+                { q: "What color is Jean Grey's hair?", options: ["A) Blonde", "B) Black", "C) Bright red", "D) White"], answer: 2 },
+                { q: "What is her first power?", options: ["A) Shooting red lasers from her eyes", "B) Moving things with her brain", "C) Turning invisible", "D) Flying super fast"], answer: 1 },
+                { q: "What is her second power?", options: ["A) Reading minds", "B) Controlling the weather", "C) Creating thick smoke", "D) Changing her shape"], answer: 0 },
+                { q: "What is the very special and fiery energy inside her body called?", options: ["A) The Dragon", "B) The Phoenix", "C) The Eagle", "D) The Fire-bird"], answer: 1 },
+                { q: "What team is she a brave member of?", options: ["A) The Avengers", "B) The Defenders", "C) The X-Men", "D) The Spider-Team"], answer: 2 },
+                { q: "True/False: Jean Grey looks like a normal human woman.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: She has to touch a heavy car with her hands to lift it.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: She can hear exactly what other people are thinking and feeling.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: When she uses the Phoenix energy, she becomes very weak.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: She is very kind and always tries to help her good friends.", options: ["True", "False"], answer: 0 }
+            ]
+        },
+        {
+            id: 23, title: "23. Joker", audioUrl: baseUrl + "21.%20Joker.mp3",
+            text: "The Joker is a very evil and crazy villain. He is Batman's worst and most famous enemy in Gotham City. The Joker looks very strange and creepy. He has bright white skin, messy green hair, and a big, scary red smile painted on his face. He looks exactly like a circus clown, but he is definitely not funny. He is a very dangerous man. The Joker loves to tell bad jokes and play terrible, hurtful tricks on people. He uses dangerous toys, like fake flowers that squirt burning acid, or small toys that give you a bad electric shock. He does not care about money. He only wants to make everybody in the city as crazy and angry as he is. Batman always tries to stop his bad games and lock him away in prison. The Joker is wild, loud, and always ready to cause big trouble.",
+            questions: [
+                { q: "What does the Joker look exactly like?", options: ["A) A scary monster", "B) A circus clown", "C) A giant spider", "D) A rich businessman"], answer: 1 },
+                { q: "What color is his messy hair?", options: ["A) Red", "B) Blue", "C) Green", "D) White"], answer: 2 },
+                { q: "What kind of dangerous toy does he use?", options: ["A) A pumpkin bomb", "B) Fake flowers that squirt burning acid", "C) A long metal chain", "D) A magic hammer"], answer: 1 },
+                { q: "What does the Joker want to do to everybody in the city?", options: ["A) Make them rich", "B) Make them as crazy and angry as he is", "C) Turn them into clowns", "D) Put them in jail"], answer: 1 },
+                { q: "Does the Joker care about money?", options: ["A) Yes, a lot", "B) Only diamonds", "C) No", "D) Yes, to buy new suits"], answer: 2 },
+                { q: "True/False: The Joker is Batman's worst and most famous enemy.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: The Joker's real name is Oswald Cobblepot.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: Batman always tries to lock him away in prison.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: The Joker tells very good and friendly jokes.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: He is wild, loud, and always ready to cause big trouble.", options: ["True", "False"], answer: 0 }
+            ]
+        },
+        {
+            id: 24, title: "24. Killer Croc", audioUrl: baseUrl + "22.%20Killer%20Croc.mp3",
+            text: "Killer Croc is a huge and scary monster. He is a big villain who often fights Batman in Gotham City. His real name is Waylon Jones. Waylon was born with a very rare and strange skin disease. As he grew up, his skin became thick, hard, and green, exactly like a real crocodile! Because people were very mean to him and called him a monster, he ran away. He moved down into the dark, dirty sewers under the city. Killer Croc is incredibly big and super strong. He can easily lift heavy cars. He has very sharp teeth and heavy claws on his big hands. He can also hold his breath underwater for a very long time. He is a very dangerous beast when he is hiding in the dark water. Batman must be very strong and smart to fight this giant, angry crocodile man in the dark sewers.",
+            questions: [
+                { q: "What was Waylon Jones born with?", options: ["A) A magic potion", "B) A rare and strange skin disease", "C) A robot arm", "D) Super speed"], answer: 1 },
+                { q: "What did his skin become exactly like as he grew up?", options: ["A) A soft snake", "B) A shiny fish", "C) A real crocodile", "D) A big turtle"], answer: 2 },
+                { q: "Where did he run away and move to?", options: ["A) A deep green jungle", "B) The dark, dirty sewers under the city", "C) A cold snowy mountain", "D) A high glass tower"], answer: 1 },
+                { q: "What can Killer Croc do underwater for a very long time?", options: ["A) Talk to fish", "B) Hold his breath", "C) Shoot lasers", "D) Create a whirlpool"], answer: 1 },
+                { q: "Why did people call him a monster and make him run away?", options: ["A) Because he stole money", "B) Because they were very mean to him", "C) Because he fought Batman", "D) Because he breathed fire"], answer: 1 },
+                { q: "True/False: Killer Croc is a huge and scary monster who often fights Batman.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: He is very small and very weak.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: He has very sharp teeth and heavy claws on his big hands.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: Killer Croc loves to hide in the bright sunlight.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: Batman does not need to be smart to fight him.", options: ["True", "False"], answer: 1 }
+            ]
+        },
+        {
+            id: 25, title: "25. Lizard", audioUrl: baseUrl + "23.%20Lizard.mp3",
+            text: "The Lizard is a very big, green monster. He is a dangerous enemy of Spider-Man. His real name is Dr. Curt Connors. Dr. Connors was a very good man and a smart doctor, but he lost his arm in an accident. He wanted his human arm to grow back. He studied how real lizards can grow their tails back. He made a special lizard medicine and drank it. It worked perfectly! His arm grew back! But there was a terrible problem. The strong medicine changed his whole body into a giant, angry, green lizard! Now he walks on two legs. He has very sharp claws, strong teeth, and a heavy green tail. He wants to turn everyone in the city into lizards too! Spider-Man does not want to hurt him. Spider-Man always tries to give him the right medicine to make him a normal human doctor again.",
+            questions: [
+                { q: "What did Dr. Curt Connors lose in an accident?", options: ["A) His leg", "B) His eye", "C) His arm", "D) His ear"], answer: 2 },
+                { q: "What animal did he study to help him grow his human arm back?", options: ["A) Real lizards", "B) Spiders", "C) Snakes", "D) Birds"], answer: 0 },
+                { q: "What happened after he drank the special lizard medicine?", options: ["A) He became invisible", "B) His arm grew back, but he turned into a giant, green lizard", "C) He turned into water", "D) He died"], answer: 1 },
+                { q: "What does the Lizard want to do to everyone in the city?", options: ["A) Cure their diseases", "B) Turn them into lizards too", "C) Freeze them", "D) Steal their money"], answer: 1 },
+                { q: "What does Spider-Man always try to do when he fights the Lizard?", options: ["A) Hurt him badly", "B) Put him in jail forever", "C) Give him the right medicine to make him a normal doctor again", "D) Trap him in a cage"], answer: 2 },
+                { q: "True/False: Dr. Connors was a very bad man before he took the medicine.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: The Lizard walks on two legs.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: He has very sharp claws, strong teeth, and a heavy green tail.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: Spider-Man wants to hurt him very much.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: The medicine worked perfectly but had a terrible problem.", options: ["True", "False"], answer: 0 }
+            ]
+        },
+        {
+            id: 26, title: "26. Loki", audioUrl: baseUrl + "24.%20Loki.mp3",
+            text: "Loki is a very famous and tricky character. He is the Prince of Asgard and the brother of the hero Thor. But Loki is not a very good brother at all. He is known as the God of Mischief. That means he loves to play bad tricks, cause trouble, and tell many lies. Loki uses powerful green magic. He can easily make himself look like a completely different person or even a small animal! He can also make fake magic copies of himself to confuse his angry enemies in a battle. Loki wears nice green and gold clothes. He wears a big gold helmet with two long horns on his head. Loki is very jealous of Thor. He always wants to be the powerful king of Asgard. He causes very big problems for his brother and all the other heroes on Earth. He is smart, selfish, and dangerous.",
+            questions: [
+                { q: "What is Loki known as?", options: ["A) The God of Thunder", "B) The God of Mischief", "C) The God of Ice", "D) The God of Fire"], answer: 1 },
+                { q: "Who is Loki's brother?", options: ["A) Thor", "B) Iron Man", "C) Captain America", "D) Superman"], answer: 0 },
+                { q: "What kind of magic does Loki use?", options: ["A) Red fire magic", "B) Powerful green magic", "C) Blue ice magic", "D) Black shadow magic"], answer: 1 },
+                { q: "What does Loki wear on his head?", options: ["A) A clear glass helmet", "B) A big gold helmet with two long horns", "C) A purple hood", "D) A green hat"], answer: 1 },
+                { q: "Why is Loki very jealous of Thor?", options: ["A) Because Thor is smarter", "B) Because Thor has a cooler cape", "C) Because Loki wants to be the powerful king of Asgard", "D) Because Thor has a magic shield"], answer: 2 },
+                { q: "True/False: Loki loves to play bad tricks, cause trouble, and tell many lies.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: Loki is the Prince of Earth.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: He can make himself look like a completely different person or a small animal.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: Loki always helps his brother fight space monsters.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: He can make fake magic copies of himself to confuse his enemies.", options: ["True", "False"], answer: 0 }
+            ]
+        },
+        {
+            id: 27, title: "27. Miguel O'Hara (Spider-Man 2099)", audioUrl: baseUrl + "26.%20Miguel%20O'Hara.mp3",
+            text: "Miguel O'Hara is a very exciting hero. He is also Spider-Man, but he lives far away in the future, in the year 2099! His future city is a very cool place full of flying cars and extremely tall glass towers. Miguel is a very smart scientist. He did an experiment and accidentally changed his own body DNA to become a super spider! He wears a shiny dark blue suit with a scary red skull-spider on his chest. Miguel is incredibly fast and super strong. He does not need to build web-shooters like Peter Parker. His strong webs come straight out of his own arms! He also has very sharp claws on his fingers and toes. He uses these sharp claws to climb smooth futuristic buildings and fight dangerous robots. Miguel is a very serious and brave hero who protects the future world from very bad and powerful companies.",
+            questions: [
+                { q: "What year does Miguel O'Hara live in?", options: ["A) 1999", "B) 2099", "C) 2199", "D) 3099"], answer: 1 },
+                { q: "How did he become a super spider?", options: ["A) A magic spider bit him", "B) He did an experiment and accidentally changed his own body DNA", "C) He found a magic ring", "D) He drank a special green chemical"], answer: 1 },
+                { q: "What does his shiny dark blue suit have on the chest?", options: ["A) A white star", "B) A scary red skull-spider", "C) A yellow lightning bolt", "D) A green web"], answer: 1 },
+                { q: "Where do his strong webs come from?", options: ["A) Web-shooters he built", "B) A special gun", "C) Straight out of his own arms", "D) His magic belt"], answer: 2 },
+                { q: "What does his future city have?", options: ["A) Flying cars and extremely tall glass towers", "B) Dirt roads and small houses", "C) Big castles and dragons", "D) Underground tunnels"], answer: 0 },
+                { q: "True/False: Miguel is a very smart scientist.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: He needs to build web-shooters exactly like Peter Parker.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: He has very sharp claws on his fingers and toes.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: Miguel is a very funny hero who tells lots of jokes.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: He fights dangerous robots in his futuristic city.", options: ["True", "False"], answer: 0 }
+            ]
+        },
+        {
+            id: 28, title: "28. Miles Morales", audioUrl: baseUrl + "25.%20Miles%20Morales.mp3",
+            text: "Miles Morales is a very cool and young teenage superhero. He lives in a big city. Just like his friend Peter Parker, Miles was bitten by a magic, radioactive spider. This special spider gave him amazing super powers! Miles became the new Spider-Man to help protect his busy city. He wears a very cool and different suit. His suit is completely black with a bright red spider painted on his chest. Miles can easily climb up tall walls and shoot strong, sticky webs from his hands. But he has two extra powers that are very special. He can turn his body completely invisible, so nobody can see him hiding! He can also shoot a bright yellow electric shock right from his hands. He uses this electric shock to stun the bad guys. Miles is a very brave, kind, and smart boy who loves helping people in his neighborhood.",
+            questions: [
+                { q: "What bit Miles Morales to give him super powers?", options: ["A) A normal dog", "B) A magic, radioactive spider", "C) A green lizard", "D) A robot bird"], answer: 1 },
+                { q: "What color is Miles's cool and different suit?", options: ["A) Red and blue", "B) Completely black with a bright red spider", "C) White and silver", "D) Green and purple"], answer: 1 },
+                { q: "What extra power lets him hide so nobody can see him?", options: ["A) Turning his body completely invisible", "B) Creating thick smoke", "C) Shrinking very small", "D) Digging underground"], answer: 0 },
+                { q: "What kind of shock can he shoot right from his hands?", options: ["A) A cold ice shock", "B) A bright yellow electric shock", "C) A green poison shock", "D) A red fire shock"], answer: 1 },
+                { q: "What does Miles use his electric shock for?", options: ["A) To turn on the lights", "B) To stun the bad guys", "C) To melt metal", "D) To cook his food"], answer: 1 },
+                { q: "True/False: Miles Morales is an old and angry superhero.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: He became the new Spider-Man to help protect his busy city.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: He cannot climb tall walls like Peter Parker.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: Miles can shoot strong, sticky webs from his hands.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: He is a brave, kind, and smart boy who loves helping people.", options: ["True", "False"], answer: 0 }
+            ]
+        },
+        {
+            id: 29, title: "29. Molten Man", audioUrl: baseUrl + "27.%20Molten%20Man.mp3",
+            text: "The Molten Man is a very dangerous and glowing villain. His real name is Mark Raxton. Mark was a scientist who accidentally touched a strange and dangerous alien rock. The alien rock covered his entire skin in a hot, liquid metal. Now, his whole body is made of shining, bright golden metal! The Molten Man is extremely hot, like a burning fire. If he touches a wall or a car, it immediately melts or catches on fire. He is also very heavy and incredibly strong. Because his metal body is so hot and slippery, it is very difficult for heroes to catch him. Spider-Man has a very hard time fighting him. Spider-Man's webs just melt away when they touch his hot golden skin! The Molten Man is usually angry and confused. He is a very dangerous, burning enemy who leaves hot, melted footprints everywhere he walks in the city.",
+            questions: [
+                { q: "What covered Mark Raxton's entire skin after an accident?", options: ["A) Cold blue ice", "B) Hard rock", "C) A hot, liquid metal", "D) Bright green venom"], answer: 2 },
+                { q: "What happens if Molten Man touches a wall or a car?", options: ["A) It freezes", "B) It turns into sand", "C) It immediately melts or catches on fire", "D) It turns invisible"], answer: 2 },
+                { q: "Why does Spider-Man have a very hard time fighting him?", options: ["A) Spider-Man's webs melt away when they touch his hot golden skin", "B) He runs too fast", "C) He turns into water", "D) He creates illusions"], answer: 0 },
+                { q: "What kind of footprints does Molten Man leave everywhere he walks?", options: ["A) Muddy footprints", "B) Hot, melted footprints", "C) Frozen footprints", "D) Invisible footprints"], answer: 1 },
+                { q: "What is Mark Raxton's body described as?", options: ["A) Bright golden metal", "B) Silver and shiny", "C) Dark red and black", "D) Clear as glass"], answer: 0 },
+                { q: "True/False: Mark Raxton accidentally touched a strange and dangerous alien rock.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: The Molten Man is very light and weak.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: He is extremely hot, like a burning fire.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: It is very easy for heroes to catch him.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: He is usually angry and confused.", options: ["True", "False"], answer: 0 }
+            ]
+        },
+        {
+            id: 30, title: "30. Moon Knight", audioUrl: baseUrl + "28.%20Moon%20Knight.mp3",
+            text: "Moon Knight is a very mysterious and tough superhero who usually works late at night. His real name is Marc Spector. He wears a very bright, completely white suit. He also wears a long white cape and a white hood over his face. Most heroes wear dark colors to hide at night, but he wants the bad guys to see him coming! Moon Knight gets his special magic power from an ancient Egyptian moon god. When the moon in the sky is full and bright, he becomes much stronger and faster. He is a great fighter and knows how to box. He uses sharp metal weapons shaped exactly like little crescent moons. He throws these moon weapons like sharp boomerangs to catch the dangerous criminals running in the dark city streets. Moon Knight is very brave, but his mind is complicated. He always tries to protect innocent people from evil.",
+            questions: [
+                { q: "Why does Moon Knight wear a bright, completely white suit at night?", options: ["A) Because he likes winter", "B) Because he wants the bad guys to see him coming", "C) Because he glow in the dark", "D) Because it reflects lasers"], answer: 1 },
+                { q: "Where does Moon Knight get his special magic power from?", options: ["A) An ancient Egyptian moon god", "B) A radioactive spider", "C) A magic shield", "D) A green potion"], answer: 0 },
+                { q: "When does he become much stronger and faster?", options: ["A) When the sun is hot", "B) When it is raining", "C) When the moon in the sky is full and bright", "D) When he is angry"], answer: 2 },
+                { q: "What do his sharp metal weapons look exactly like?", options: ["A) Little stars", "B) Little crescent moons", "C) Small bats", "D) Silver bullets"], answer: 1 },
+                { q: "How does he throw his moon weapons?", options: ["A) Like heavy rocks", "B) Like sharp boomerangs", "C) Like fast darts", "D) Like magic spells"], answer: 1 },
+                { q: "True/False: Moon Knight is a very mysterious and tough superhero.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: His real name is Marc Spector.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: He wears dark colors to hide at night.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: He is a great fighter and knows how to box.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: His mind is very simple and calm.", options: ["True", "False"], answer: 1 }
+            ]
+        },
+        {
+            id: 31, title: "31. Mr Freeze", audioUrl: baseUrl + "29.%20Mr%20Freeze.mp3",
+            text: "Mr. Freeze is a very sad and extremely cold villain from Gotham City. His real name is Victor Fries. Victor was a smart doctor trying to cure his very sick wife. But he had a terrible accident in his lab with freezing ice chemicals. Now, his body has changed. He cannot live in a warm or sunny place anymore. His body must always stay below zero degrees! To survive, he wears a big, heavy robot suit with a clear glass helmet over his head. The heavy suit keeps his body freezing cold and makes him super strong. He carries a big, dangerous gun that shoots solid blue ice. He uses his ice gun to freeze Batman and anything else in his way! Mr. Freeze does not want to rule the city. He only steals money and diamonds to help his sick wife. He is a cold but very sad man.",
+            questions: [
+                { q: "What was Victor Fries trying to cure when he had a terrible accident?", options: ["A) His sick dog", "B) His very sick wife", "C) His own disease", "D) The whole city"], answer: 1 },
+                { q: "What must Mr. Freeze's body always stay below?", options: ["A) Zero degrees", "B) Boiling point", "C) Room temperature", "D) 50 degrees"], answer: 0 },
+                { q: "What does he wear over his head to survive?", options: ["A) A dark hood", "B) A scary white skull mask", "C) A clear glass helmet", "D) A black ski mask"], answer: 2 },
+                { q: "What does his big, dangerous gun shoot?", options: ["A) Fire", "B) Acid", "C) Solid blue ice", "D) Lasers"], answer: 2 },
+                { q: "Why does he steal money and diamonds?", options: ["A) To rule the city", "B) To buy new robot suits", "C) To help his sick wife", "D) To pay the Joker"], answer: 2 },
+                { q: "True/False: Mr. Freeze is a very happy and warm villain.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: He had an accident in his lab with freezing ice chemicals.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: He can live comfortably in a warm or sunny place.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: The heavy robot suit makes him super strong.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: He uses his ice gun to freeze Batman.", options: ["True", "False"], answer: 0 }
+            ]
+        },
+        {
+            id: 32, title: "32. Mysterio", audioUrl: baseUrl + "30.%20Mysterio.mp3",
+            text: "Mysterio is a very tricky and smart villain who often fights Spider-Man. Mysterio's real name is Quentin Beck. Quentin was not a scientist or a monster. He was a normal actor who worked in movies making cool special effects. He does not have any real magic or super strength. Instead, he uses thick colored smoke, mirrors, bright lights, and small robots to trick people. He wears a green suit and a long purple cape. The funniest thing is his helmet. His helmet looks exactly like a big, clear fishbowl! Mysterio creates huge fake monsters, fake aliens, and fake buildings to confuse Spider-Man. He uses these amazing illusions to easily steal money from banks and pretend to be a powerful wizard. Spider-Man must use his special spider-sense to close his eyes and feel the real danger. Mysterio is a master of lies and a very fun villain to watch.",
+            questions: [
+                { q: "What was Quentin Beck's normal job before fighting Spider-Man?", options: ["A) A scientist", "B) An actor who worked in movies making special effects", "C) A police officer", "D) A rich businessman"], answer: 1 },
+                { q: "Does Mysterio have any real magic or super strength?", options: ["A) Yes, very strong magic", "B) Yes, super strength", "C) No, he uses smoke, mirrors, and lights", "D) No, he only uses a big gun"], answer: 2 },
+                { q: "What does his helmet look exactly like?", options: ["A) A big, clear fishbowl", "B) A green goblin mask", "C) A skull", "D) A metal bucket"], answer: 0 },
+                { q: "What does Mysterio create to confuse Spider-Man?", options: ["A) Real monsters", "B) Huge fake monsters, aliens, and buildings", "C) Solid ice walls", "D) Deep water puddles"], answer: 1 },
+                { q: "What must Spider-Man use to feel the real danger when fighting him?", options: ["A) His smart brain", "B) His special spider-sense", "C) His sticky webs", "D) His camera"], answer: 1 },
+                { q: "True/False: Mysterio is a very tricky and smart villain.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: He wears a red suit and a yellow cape.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: He uses his amazing illusions to easily steal money from banks.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: He pretends to be a powerful wizard.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: Mysterio is a real alien from space.", options: ["True", "False"], answer: 1 }
+            ]
+        },
+        {
+            id: 33, title: "33. Penguin", audioUrl: baseUrl + "31.%20Penguin.mp3",
+            text: "The Penguin is a very famous boss of the bad guys in Gotham City. His real name is Oswald Cobblepot. He looks a little bit like a real penguin animal! He is a short, round man with a big, sharp nose. He always wears a fancy black tuxedo coat and a tall black hat. He also wears a special glass over one eye. The Penguin is a very rich man and he loves to collect beautiful and dangerous birds. He does not have super strength or magic powers. But he always carries special umbrellas. His umbrellas look completely normal, but they are full of hidden tricks! Some umbrellas can shoot dangerous bullets, some can shoot hot fire, and some can even spin fast to help him fly away like a helicopter! The Penguin is very smart and loves to make evil plans. Batman always has to stop his criminal business.",
+            questions: [
+                { q: "What does Oswald Cobblepot always wear on his head?", options: ["A) A green hood", "B) A clear glass helmet", "C) A tall black hat", "D) A red baseball cap"], answer: 2 },
+                { q: "What does he wear over one eye?", options: ["A) A black patch", "B) A special glass", "C) A red laser", "D) A bandage"], answer: 1 },
+                { q: "What kind of animals does the Penguin love to collect?", options: ["A) Dangerous dogs", "B) Giant spiders", "C) Beautiful and dangerous birds", "D) Scary reptiles"], answer: 2 },
+                { q: "What completely normal-looking item is full of hidden tricks?", options: ["A) His walking stick", "B) His special umbrellas", "C) His black tuxedo", "D) His fancy shoes"], answer: 1 },
+                { q: "What can some of his special umbrellas do to help him fly away?", options: ["A) Turn into a rocket", "B) Spin fast like a helicopter", "C) Grow big wings", "D) Shoot an invisible rope"], answer: 1 },
+                { q: "True/False: The Penguin is a short, round man with a big, sharp nose.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: The Penguin has super strength and magic powers.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: Some umbrellas can shoot dangerous bullets or hot fire.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: The Penguin is a very poor man who steals to survive.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: Batman always has to stop his criminal business.", options: ["True", "False"], answer: 0 }
+            ]
+        },
+        {
+            id: 34, title: "34. Punisher", audioUrl: baseUrl + "32.%20Punisher.mp3",
+            text: "The Punisher is a very serious and dangerous character. His real name is Frank Castle. Frank was a very brave and highly trained soldier in the army. He is not a normal superhero because he does not have any magic powers or super speed. He also does not wear a bright, colorful costume. He wears simple, dark clothes with a big, scary white skull painted right on his chest. Frank is a very tough man. He knows exactly how to use many different guns, traps, and heavy weapons. The Punisher fights against very bad criminals to protect the city. But he is very rough and angry. He does not just catch the bad guys; he hurts them very badly. Because he is so dangerous, other heroes like Spider-Man and Captain America often try to stop him. Frank believes his violent way is the only way to stop evil criminals forever.",
+            questions: [
+                { q: "What was Frank Castle's job before becoming the Punisher?", options: ["A) A scientist", "B) A highly trained soldier in the army", "C) A police detective", "D) An actor"], answer: 1 },
+                { q: "What is painted right on the chest of his dark clothes?", options: ["A) A red spider", "B) A big, scary white skull", "C) A yellow lightning bolt", "D) A white star"], answer: 1 },
+                { q: "How is he different from a normal superhero?", options: ["A) He has super speed", "B) He does not have magic powers or wear a colorful costume", "C) He flies", "D) He shoots lasers"], answer: 1 },
+                { q: "How does he treat the bad guys he catches?", options: ["A) He takes them to jail nicely", "B) He hurts them very badly", "C) He talks to them", "D) He gives them money"], answer: 1 },
+                { q: "What does Frank believe is the only way to stop evil criminals forever?", options: ["A) His violent way", "B) Putting them in prison", "C) Talking to them calmly", "D) Tricking them"], answer: 0 },
+                { q: "True/False: The Punisher is a very serious and dangerous character.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: He knows exactly how to use many different guns, traps, and heavy weapons.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: Spider-Man and Captain America always help him hurt criminals.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: He wears a bright red and gold costume.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: He fights against bad criminals to protect the city.", options: ["True", "False"], answer: 0 }
+            ]
+        },
+        {
+            id: 35, title: "35. Riddler", audioUrl: baseUrl + "48.%20Riddler.mp3",
             text: "The Riddler is a very smart and tricky villain from Gotham City. His real name is Edward Nygma. He is a famous enemy of Batman. The Riddler does not have strong muscles or super magic powers. His best weapon is his very big brain! He wears a bright green suit and a green hat. His clothes are covered in big black question marks. He also carries a golden walking stick shaped like a question mark. The Riddler loves to steal money and cause trouble, but he cannot just run away. He always leaves secret clues and difficult puzzles for Batman to find. He wants to prove that he is the smartest person in the whole world. He thinks nobody can solve his hard questions. But Batman is a great detective. Batman always uses his own smart brain to solve the puzzles and catch this clever villain. He is a very fun and interesting bad guy.",
-            questions: []
+            questions: [
+                { q: "What is Edward Nygma's best weapon?", options: ["A) A big gun", "B) His very big brain", "C) A special umbrella", "D) A pumpkin bomb"], answer: 1 },
+                { q: "What color is the Riddler's suit and hat?", options: ["A) Bright red", "B) Dark black", "C) Bright green", "D) Yellow"], answer: 2 },
+                { q: "What is covered all over his clothes?", options: ["A) Little white stars", "B) Big black question marks", "C) Small green dots", "D) Red diamonds"], answer: 1 },
+                { q: "What does the Riddler always leave for Batman to find?", options: ["A) Secret clues and difficult puzzles", "B) Bags of money", "C) Special weapons", "D) Flowers"], answer: 0 },
+                { q: "What does the Riddler want to prove?", options: ["A) That he is the strongest man", "B) That he is the smartest person in the whole world", "C) That he can fly", "D) That he is Batman's best friend"], answer: 1 },
+                { q: "True/False: The Riddler has strong muscles and super magic powers.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: He carries a golden walking stick shaped like a question mark.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: He thinks everybody can easily solve his hard questions.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: Batman uses his own smart brain to solve the puzzles.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: The Riddler is a very famous enemy of Batman.", options: ["True", "False"], answer: 0 }
+            ]
+        },
+        {
+            id: 36, title: "36. Sabretooth", audioUrl: baseUrl + "33.%20Sabretooth.mp3",
+            text: "Sabretooth is a very wild, angry, and dangerous villain. He is the biggest and worst enemy of the hero Wolverine. Sabretooth is a special mutant who acts and fights exactly like a huge, hungry wild animal. He is a very big man, super strong, and his body is covered in thick yellow hair. He has sharp, yellow teeth and very long, sharp claws on his strong fingers. Just like his enemy Wolverine, Sabretooth has a special healing power inside his body. If he gets hurt or cut in a bad battle, his body fixes itself very quickly. He never gets tired. Sabretooth loves to hunt his enemies in the cold snow and the deep green forest. He is always looking for a big, bloody fight. He is very cruel and does not care about anyone. He is a perfect and scary match for Wolverine in a big fight.",
+            questions: [
+                { q: "Who is Sabretooth's biggest and worst enemy?", options: ["A) Spider-Man", "B) Captain America", "C) Wolverine", "D) Cyclops"], answer: 2 },
+                { q: "What is his big, super strong body covered in?", options: ["A) Thick yellow hair", "B) Green scales", "C) Hard rock", "D) Solid ice"], answer: 0 },
+                { q: "What special power does he share with Wolverine?", options: ["A) Super speed", "B) A special healing power", "C) Shooting lasers", "D) Turning invisible"], answer: 1 },
+                { q: "Where does Sabretooth love to hunt his enemies?", options: ["A) In tall buildings", "B) In the cold snow and the deep green forest", "C) In the hot desert", "D) Under the water"], answer: 1 },
+                { q: "How is Sabretooth described as a fighter?", options: ["A) Quiet and smart", "B) Very wild, angry, and dangerous", "C) Polite and careful", "D) Slow and weak"], answer: 1 },
+                { q: "True/False: Sabretooth is a special mutant who acts like a huge wild animal.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: He gets tired very quickly in a battle.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: He has very long, sharp claws on his strong fingers.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: Sabretooth is very kind and cares about everyone.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: He is a perfect and scary match for Wolverine in a fight.", options: ["True", "False"], answer: 0 }
+            ]
+        },
+        {
+            id: 37, title: "37. Sandman", audioUrl: baseUrl + "34.%20Sandman.mp3",
+            text: "Sandman is a very messy and difficult villain to fight. His real name is Flint Marko. Flint was running away from the police on a beach. He accidentally fell into a big science machine. The magic machine mixed his human body with the tiny grains of sand! Now, Sandman's entire body is completely made of brown sand. He can easily change his shape into anything he wants. He can make his arms into giant, heavy sand hammers or tall, thick sand walls. If Spider-Man tries to punch his chest, Spider-Man's hand just goes right through the soft sand! He can slip under doors and fly in the wind like a dust storm. But Sandman has one big weakness. If he gets completely wet with a lot of water, his sand turns into hard, heavy mud! Then he cannot move at all, and Spider-Man can easily catch him and stop him.",
+            questions: [
+                { q: "How did Flint Marko turn into Sandman?", options: ["A) He drank a potion", "B) He was bitten by a sand spider", "C) He fell into a big science machine on a beach", "D) He found a magic rock"], answer: 2 },
+                { q: "What happens if Spider-Man tries to punch his chest?", options: ["A) His hand gets burned", "B) His hand goes right through the soft sand", "C) His hand bounces off", "D) His hand gets an electric shock"], answer: 1 },
+                { q: "What can Sandman make his arms into?", options: ["A) Giant sand hammers or tall walls", "B) Sharp metal swords", "C) Water hoses", "D) Wings to fly high"], answer: 0 },
+                { q: "What is Sandman's one big weakness?", options: ["A) Cold ice", "B) Hot fire", "C) A lot of water", "D) Loud noise"], answer: 2 },
+                { q: "What happens to his sand body when he gets completely wet?", options: ["A) It turns to glass", "B) It turns into hard, heavy mud", "C) It disappears", "D) It melts"], answer: 1 },
+                { q: "True/False: Sandman's entire body is completely made of brown sand.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: He cannot change his shape into anything he wants.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: He can fly in the wind exactly like a dust storm.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: When he turns into heavy mud, Spider-Man can easily catch him.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: Sandman was running away from the police when the accident happened.", options: ["True", "False"], answer: 0 }
+            ]
+        },
+        {
+            id: 38, title: "38. Spider-Man", audioUrl: baseUrl + "35.%20Spider-Man.mp3",
+            text: "Spider-Man is one of the most famous and friendly heroes in the whole world! His real name is Peter Parker. Peter was a smart, quiet, and shy teenager who loved science. One day, a small, glowing, radioactive spider bit him on the hand. Suddenly, Peter got amazing super spider powers! He made a cool red and blue suit with a black web pattern. Spider-Man is incredibly strong and he can easily climb straight up tall glass buildings. He also invented special tools for his wrists called 'web-shooters.' He uses them to shoot long, sticky white webs. He swings high above the busy city streets on these strong webs. Spider-Man is very brave, but he is also very funny. He loves to tell jokes while he is fighting dangerous bad guys. He always tries his best to protect his neighborhood and help everyday people who are in big trouble.",
+            questions: [
+                { q: "What was Peter Parker like before the spider bit him?", options: ["A) A tough soldier", "B) A smart, quiet, and shy teenager", "C) A rich businessman", "D) A famous actor"], answer: 1 },
+                { q: "What bit Peter on the hand?", options: ["A) A wild dog", "B) A radioactive spider", "C) A green lizard", "D) A special bat"], answer: 1 },
+                { q: "What colors are in his cool suit with a black web pattern?", options: ["A) Red and blue", "B) Black and silver", "C) Green and purple", "D) Yellow and red"], answer: 0 },
+                { q: "What special tools did Peter invent for his wrists?", options: ["A) Laser shooters", "B) Web-shooters", "C) Ice cannons", "D) Smoke bombs"], answer: 1 },
+                { q: "What does Spider-Man love to do while he is fighting bad guys?", options: ["A) Tell jokes", "B) Read books", "C) Hide", "D) Sleep"], answer: 0 },
+                { q: "True/False: Spider-Man is incredibly strong and can easily climb straight up tall buildings.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: The spider that bit him was big, non-glowing, and normal.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: He uses his webs to swing high above the busy city streets.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: Spider-Man is very serious and never talks during a fight.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: He always tries his best to protect his neighborhood.", options: ["True", "False"], answer: 0 }
+            ]
+        },
+        {
+            id: 39, title: "39. Superman", audioUrl: baseUrl + "36.%20Superman.mp3",
+            text: "Superman is the strongest and most famous superhero in the world. He came to Earth in a small flying spaceship when he was a tiny baby. He is actually an alien from a different planet called Krypton. Because he is from deep space, the Earth's bright yellow sun gives him amazing and unbelievable powers. Superman wears a bright blue suit, a long red cape, and a big red 'S' on his chest. The 'S' stands for hope. He can fly super fast through the clouds. He is super strong and can lift big airplanes. He can even shoot hot red lasers from his eyes and blow freezing cold wind from his mouth! Bullets bounce right off his strong chest. Superman is very kind, polite, and always tells the truth. He uses his amazing alien powers to help everyone on Earth and stop terrible disasters from happening. He is the best.",
+            questions: [
+                { q: "What planet is Superman originally from?", options: ["A) Earth", "B) Mars", "C) Krypton", "D) Asgard"], answer: 2 },
+                { q: "What gives him his amazing and unbelievable powers?", options: ["A) The Earth's bright yellow sun", "B) A magic rock", "C) A special medicine", "D) His super suit"], answer: 0 },
+                { q: "What does the big red 'S' on his chest stand for?", options: ["A) Super", "B) Strong", "C) Speed", "D) Hope"], answer: 3 },
+                { q: "What can he shoot from his eyes?", options: ["A) Sticky webs", "B) Hot red lasers", "C) Freezing ice", "D) Yellow lightning"], answer: 1 },
+                { q: "What happens when bullets hit his strong chest?", options: ["A) They burn up", "B) They bounce right off", "C) They hurt him badly", "D) They turn to sand"], answer: 1 },
+                { q: "True/False: Superman is an alien who came to Earth in a small flying spaceship.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: He wears a bright green suit and a yellow cape.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: He can blow freezing cold wind from his mouth.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: Superman tells lies very often.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: He uses his amazing alien powers to stop terrible disasters.", options: ["True", "False"], answer: 0 }
+            ]
+        },
+        {
+            id: 40, title: "40. The Wall", audioUrl: baseUrl + "37.%20The%20Wall.mp3",
+            text: "The Wall is a very strange, silly, and funny villain. His real name is Joshua Waldemeyer. Joshua was a young boy who was doing his job. He was busy building a normal brick wall at a school. Suddenly, a magical and dangerous accident happened, and he turned into the actual wall! He literally looks like a giant, walking wall made of hard red bricks. He has two legs and two arms, but his main body is just a giant, heavy rectangle of bricks. He has a funny face right in the middle of the bricks! Because he is a solid wall, he is incredibly heavy and very hard to push over. He is not very fast or smart. But he loves to cause annoying trouble. He loves to stand in the middle of the street and block Spider-Man from running! He is a very weird and silly bad guy.",
+            questions: [
+                { q: "What was Joshua Waldemeyer doing when the accident happened?", options: ["A) Building a normal brick wall at a school", "B) Painting a house", "C) Driving a big truck", "D) Digging a hole"], answer: 0 },
+                { q: "What does The Wall literally look like?", options: ["A) A big block of ice", "B) A giant, walking wall made of hard red bricks", "C) A tall glass building", "D) A mountain of sand"], answer: 1 },
+                { q: "Where is his funny face located?", options: ["A) On his hand", "B) On his foot", "C) Right in the middle of the bricks", "D) On his back"], answer: 2 },
+                { q: "What does he love to do in the middle of the street?", options: ["A) Sing loud songs", "B) Build more walls", "C) Block Spider-Man from running", "D) Hide in the shadows"], answer: 2 },
+                { q: "Why is he very hard to push over?", options: ["A) Because he is super fast", "B) Because he is incredibly heavy", "C) Because he is invisible", "D) Because he has sticky feet"], answer: 1 },
+                { q: "True/False: The Wall is a very smart and fast villain.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: He has two legs and two arms.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: He uses green magic to fight Spider-Man.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: He loves to cause annoying trouble.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: He is described as a strange, silly, and funny villain.", options: ["True", "False"], answer: 0 }
+            ]
+        },
+        {
+            id: 41, title: "41. Thor", audioUrl: baseUrl + "38.%20Thor.mp3",
+            text: "Thor is a very famous, powerful, and brave hero. He is the strong Prince of Asgard, a beautiful magical world hidden deep in space. Thor is a real God, so he is incredibly tall, heavy, and super strong. He has long blonde hair, wears silver armor, and has a bright red cape. Thor is the God of Thunder, which means he controls the wild weather. He can easily make dark rain clouds, heavy storms, and strike bad guys with bright, hot lightning! He carries a very special and heavy magic hammer called Mjolnir. Only a person who is completely good and pure can lift this heavy magic hammer. Thor spins his hammer very fast to fly through the air. He travels across the universe to fight scary space monsters and protect the Earth. He is a very loud, happy, and proud warrior who loves a good battle.",
+            questions: [
+                { q: "Thor is the strong Prince of which beautiful magical world?", options: ["A) Earth", "B) Krypton", "C) Asgard", "D) Mars"], answer: 2 },
+                { q: "What does Thor control as the God of Thunder?", options: ["A) The ocean", "B) The wild weather", "C) Time", "D) People's minds"], answer: 1 },
+                { q: "What is the name of his very special and heavy magic hammer?", options: ["A) Excalibur", "B) Mjolnir", "C) Trident", "D) Lasso"], answer: 1 },
+                { q: "Who is the only person that can lift his magic hammer?", options: ["A) The strongest man", "B) The smartest alien", "C) A person who is completely good and pure", "D) Anyone with a special glove"], answer: 2 },
+                { q: "How does Thor fly through the air?", options: ["A) By wearing a wing suit", "B) By riding a magic horse", "C) By spinning his hammer very fast", "D) By shooting rockets from his boots"], answer: 2 },
+                { q: "True/False: Thor is a real God, so he is incredibly tall and super strong.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: He has short black hair and wears a green cape.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: He can strike bad guys with bright, hot lightning.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: Thor travels across the universe to fight scary space monsters.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: He is a very quiet warrior who hates battles.", options: ["True", "False"], answer: 1 }
+            ]
+        },
+        {
+            id: 42, title: "42. Tombstone", audioUrl: baseUrl + "39.%20Tombstone.mp3",
+            text: "Tombstone is a very tall, scary, and dangerous villain. His real name is Lonnie Lincoln. Lonnie was a normal man, but he had a very bad accident with a special, strange gas. Now, his skin is completely white, cold, and very, very hard. His skin is literally as hard as a real rock! Tombstone is extremely tall and he always wears nice, expensive business suits. He does not use any green magic or shoot red lasers. He is just extremely strong and very mean. Because his skin is so hard, he cannot be hurt by normal punches, heavy knives, or even fast bullets. They just bounce off him! He is a big boss of the dangerous criminals in the dark city. Spider-Man has to be very smart and very fast to beat this tough, rocky guy. Tombstone is a very difficult enemy to fight in a close battle.",
+            questions: [
+                { q: "What did Lonnie Lincoln have an accident with?", options: ["A) A special, strange gas", "B) Freezing chemicals", "C) A radioactive spider", "D) Hot metal"], answer: 0 },
+                { q: "What is his skin exactly as hard as?", options: ["A) Heavy metal", "B) A real rock", "C) Diamond", "D) Glass"], answer: 1 },
+                { q: "What color is Tombstone's skin completely?", options: ["A) Bright green", "B) Dark grey", "C) White", "D) Solid gold"], answer: 2 },
+                { q: "What does Tombstone always wear?", options: ["A) A scary monster costume", "B) Nice, expensive business suits", "C) Tight black leather", "D) A bright yellow cape"], answer: 1 },
+                { q: "What happens when fast bullets hit Tombstone?", options: ["A) They melt", "B) They pass right through", "C) They bounce off him", "D) They turn to sand"], answer: 2 },
+                { q: "True/False: Tombstone uses green magic and shoots red lasers.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: His skin is cold, white, and very hard.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: He is a big boss of the dangerous criminals in the dark city.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: Normal punches and heavy knives easily hurt him.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: Spider-Man has to be very smart and very fast to beat him.", options: ["True", "False"], answer: 0 }
+            ]
+        },
+        {
+            id: 43, title: "43. Venom", audioUrl: baseUrl + "40.%20Venom.mp3",
+            text: "Venom is a very huge, dark, and scary monster. He is an enemy of Spider-Man. But Venom is not just one normal person. He is actually made of two different things! The first is Eddie Brock, a big and angry man. The second is a black, slimy alien from space called a 'symbiote.' When Eddie and the alien join together, they become the giant monster Venom! Venom looks a lot like a giant, dark Spider-Man. He has a huge mouth, very sharp teeth, and a very long, scary pink tongue. He is much bigger and much stronger than Spider-Man. He can also shoot dark, sticky webs. Sometimes Venom is a very bad villain who wants to hurt Spider-Man. But sometimes he acts like a tough hero and protects innocent people on the street. He is a very wild and confusing character who loves to eat chocolate and cause trouble.",
+            questions: [
+                { q: "Venom is made of a big angry man and what else?", options: ["A) A magic robot", "B) A black, slimy alien called a symbiote", "C) A radioactive spider", "D) A strange green gas"], answer: 1 },
+                { q: "What is the name of the big and angry man who is part of Venom?", options: ["A) Eddie Brock", "B) Peter Parker", "C) Norman Osborn", "D) Arthur Curry"], answer: 0 },
+                { q: "What does Venom look a lot like?", options: ["A) A giant green lizard", "B) A giant, dark Spider-Man", "C) A scary clown", "D) A big rhinoceros"], answer: 1 },
+                { q: "What very long and scary thing does Venom have in his huge mouth?", options: ["A) A metal tongue", "B) A sharp sword", "C) A pink tongue", "D) A laser beam"], answer: 2 },
+                { q: "What funny thing does Venom love to eat?", options: ["A) Pumpkins", "B) Chocolate", "C) Fish", "D) Rocks"], answer: 1 },
+                { q: "True/False: Venom is much bigger and much stronger than Spider-Man.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: Venom can also shoot dark, sticky webs.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: Venom is always a bad villain and never protects innocent people.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: Venom is a very quiet and calm character.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: Venom has very sharp teeth in his huge mouth.", options: ["True", "False"], answer: 0 }
+            ]
+        },
+        {
+            id: 44, title: "44. Vision", audioUrl: baseUrl + "41.%20Vision.mp3",
+            text: "Vision is a very amazing and unique superhero. He is not a normal human being with a heart. He is a very smart and powerful robot called an android. He was originally built by bad guys, but he decided to be a good hero and help the world! Vision's robot body is bright red and green, and he wears a cool yellow cape. He has a shining yellow magic jewel right in the middle of his forehead. This special jewel gives him amazing super powers. He can shoot very hot energy beams directly from his head! Vision can also fly quietly through the air. His coolest power is changing his own robot body. He can become like a ghost and walk right through solid brick walls! Or, he can make himself extremely heavy, like a huge mountain rock. He is very calm, very smart, and a great hero.",
+            questions: [
+                { q: "What kind of body does Vision have?", options: ["A) A human body", "B) A very smart and powerful robot body called an android", "C) An alien body", "D) A body made of sand"], answer: 1 },
+                { q: "What colors are Vision's robot body?", options: ["A) Blue and red", "B) Bright red and green", "C) Silver and black", "D) Yellow and orange"], answer: 1 },
+                { q: "What is right in the middle of his forehead?", options: ["A) A big red S", "B) A shining yellow magic jewel", "C) A laser eye", "D) A black star"], answer: 1 },
+                { q: "What is Vision's coolest power?", options: ["A) Becoming like a ghost to walk right through solid brick walls", "B) Freezing everything", "C) Turning into animals", "D) Controlling the weather"], answer: 0 },
+                { q: "What else can he do to his body?", options: ["A) Make it turn invisible", "B) Make it extremely heavy, like a huge mountain rock", "C) Make it very small", "D) Make it turn to water"], answer: 1 },
+                { q: "True/False: Vision was originally built by good heroes.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: He has a normal human heart inside him.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: He can shoot very hot energy beams directly from his head.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: Vision can fly quietly through the air.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: He is described as very calm, very smart, and a great hero.", options: ["True", "False"], answer: 0 }
+            ]
+        },
+        {
+            id: 45, title: "45. Vulture", audioUrl: baseUrl + "42.%20Vulture.mp3",
+            text: "The Vulture is a very dangerous and old villain. He is one of Spider-Man's oldest flying enemies. His real name is Adrian Toomes. Adrian is an older man with no hair, but he is a very smart inventor. He invented a very special flying suit with big, green, metal wings. This wing suit gives him super strength and lets him fly very fast and silently in the air, exactly like a big, scary bird. The Vulture loves to fly up very high in the clouds. Then, he dives down incredibly fast from the sky to steal bags of money from banks. He grabs things with his sharp, heavy metal boots and flies away before the police arrive. Spider-Man must jump very high and use his sticky webs to catch this fast flying bad guy. The Vulture is mean, greedy, and always ready to fight Spider-Man in the sky.",
+            questions: [
+                { q: "What kind of suit did Adrian Toomes invent?", options: ["A) A heavy robot suit", "B) A flying suit with big, green, metal wings", "C) A scuba suit", "D) A fast running suit"], answer: 1 },
+                { q: "What does the suit let him do exactly like a big, scary bird?", options: ["A) Build nests", "B) Fly very fast and silently in the air", "C) Talk to animals", "D) Eat fish"], answer: 1 },
+                { q: "What does the Vulture dive down to steal from banks?", options: ["A) Bags of money", "B) Expensive art", "C) Secret documents", "D) Shiny diamonds"], answer: 0 },
+                { q: "How does he grab things before flying away?", options: ["A) With a long rope", "B) With sticky webs", "C) With his sharp, heavy metal boots", "D) With a magic net"], answer: 2 },
+                { q: "What must Spider-Man use to catch this fast flying bad guy?", options: ["A) His glider", "B) His sticky webs", "C) An airplane", "D) A boomerang"], answer: 1 },
+                { q: "True/False: The Vulture is a very young and friendly hero.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: Adrian Toomes is an older man with no hair.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: The wing suit gives him super strength.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: The Vulture is mean, greedy, and always ready to fight in the sky.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: Spider-Man can easily run to catch him on the ground.", options: ["True", "False"], answer: 1 }
+            ]
+        },
+        {
+            id: 46, title: "46. Winter Soldier", audioUrl: baseUrl + "43.%20Winter%20Soldier.mp3",
+            text: "The Winter Soldier is a very tough and brave hero. His real name is Bucky Barnes. A long time ago, Bucky was a brave army soldier and Captain America's best friend. But Bucky had a terrible accident in the snowy mountains and lost his left arm. Bad guys found him and saved him. They gave him a brand new arm made of shiny, strong silver metal! This heavy metal arm makes him punch incredibly hard. For a long time, the bad guys controlled Bucky's brain, making him the dangerous and evil Winter Soldier. He did many bad things. But Captain America fought hard to help his best friend remember his real name. Now, Bucky's mind is free. The Winter Soldier is a great hero again. He uses his guns and his strong metal arm to fight for good and stop the bad guys from hurting people.",
+            questions: [
+                { q: "Who was Bucky Barnes's best friend a long time ago?", options: ["A) Iron Man", "B) Spider-Man", "C) Captain America", "D) Thor"], answer: 2 },
+                { q: "What did Bucky lose in the snowy mountains?", options: ["A) His memory", "B) His shield", "C) His left arm", "D) His gun"], answer: 2 },
+                { q: "What did the bad guys give him?", options: ["A) A magic hammer", "B) A brand new arm made of shiny, strong silver metal", "C) A red wing suit", "D) A green glider"], answer: 1 },
+                { q: "What did the bad guys do to his brain?", options: ["A) Made it super smart", "B) Controlled it, making him dangerous and evil", "C) Put a computer chip inside it", "D) Erased it completely"], answer: 1 },
+                { q: "Who fought hard to help Bucky remember his real name?", options: ["A) Captain America", "B) The Punisher", "C) Wolverine", "D) Batman"], answer: 0 },
+                { q: "True/False: Bucky Barnes was never a brave army soldier.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: The heavy metal arm makes him punch incredibly hard.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: The Winter Soldier's mind is still controlled by the bad guys.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: He uses his guns and his strong metal arm to fight for good now.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: He had his terrible accident in the hot desert.", options: ["True", "False"], answer: 1 }
+            ]
+        },
+        {
+            id: 47, title: "47. Wolverine", audioUrl: baseUrl + "44.%20Wolverine.mp3",
+            text: "Wolverine is a very famous, tough, and angry superhero. He is a very important member of the X-Men team. His real name is Logan. Wolverine is a special mutant with two amazing powers. His first power is his super healing factor. If he gets hurt, burned, or cut in a fight, his body quickly heals itself in just a few seconds. He can survive almost anything! His second power is his sharp claws. Wolverine has three long, strong metal claws hidden inside each of his hands. When he gets very angry, the sharp claws come out with a loud sound! He is a small man, but he is a very wild and dangerous fighter. He rides a motorcycle and wears a yellow and blue suit. Wolverine likes to be alone, but he will always fight very hard to protect his mutant friends and the young students at his school.",
+            questions: [
+                { q: "What is Wolverine's first amazing power called?", options: ["A) Super speed", "B) Super healing factor", "C) Invisibility", "D) Laser vision"], answer: 1 },
+                { q: "How quickly can his body heal itself in a fight?", options: ["A) In a few weeks", "B) In just a few seconds", "C) After a long sleep", "D) With special medicine"], answer: 1 },
+                { q: "What is hidden inside each of Wolverine's hands?", options: ["A) Three long, strong metal claws", "B) Web-shooters", "C) Small bombs", "D) Magic rings"], answer: 0 },
+                { q: "What colors are his suit?", options: ["A) Red and black", "B) Green and white", "C) Yellow and blue", "D) Silver and grey"], answer: 2 },
+                { q: "Who will he always fight very hard to protect?", options: ["A) The police", "B) His mutant friends and the young students at his school", "C) The rich people in the city", "D) Normal soldiers"], answer: 1 },
+                { q: "True/False: Wolverine's real name is Logan.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: He is a very tall and quiet man.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: When he gets very angry, his sharp claws come out with a loud sound.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: He is a very important member of the Avengers team.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: Wolverine likes to be alone, but he protects his friends.", options: ["True", "False"], answer: 0 }
+            ]
+        },
+        {
+            id: 48, title: "48. Wonder Woman", audioUrl: baseUrl + "45.%20Wonder%20Woman.mp3",
+            text: "Wonder Woman is a fantastic, beautiful, and extremely powerful superhero. Her real name is Diana. She is a brave princess from a beautiful, secret island. This island is full of strong women called Amazons. Wonder Woman is incredibly strong, almost as strong as Superman! She wears a bright red and gold top with a blue skirt. She has very special and magic tools to help her fight evil. She wears shiny silver bracelets on her arms. She uses these metal bracelets to easily block very fast bullets! She also carries a magic, glowing yellow rope. This rope is called the Lasso of Truth. If she catches a bad villain with her glowing lasso, they cannot tell a lie. They must tell her the complete truth! Wonder Woman is a great leader, a perfect fighter, and she always wants to bring peace and love to the whole world.",
+            questions: [
+                { q: "Where is Wonder Woman's secret island full of?", options: ["A) Smart scientists", "B) Strong women called Amazons", "C) Magic dragons", "D) Giant robots"], answer: 1 },
+                { q: "What does Wonder Woman use to easily block very fast bullets?", options: ["A) A big round shield", "B) Shiny silver bracelets on her arms", "C) A magic cape", "D) A thick wall"], answer: 1 },
+                { q: "What is her magic, glowing yellow rope called?", options: ["A) The Rope of Justice", "B) The Lasso of Truth", "C) The Golden Whip", "D) The Magic String"], answer: 1 },
+                { q: "What happens if she catches a bad villain with her glowing lasso?", options: ["A) They fall asleep", "B) They turn invisible", "C) They cannot tell a lie", "D) They lose their memory"], answer: 2 },
+                { q: "What does Wonder Woman always want to bring to the whole world?", options: ["A) Peace and love", "B) Money and power", "C) Fear and sadness", "D) War and anger"], answer: 0 },
+                { q: "True/False: Wonder Woman's real name is Diana.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: She is incredibly strong, almost as strong as Superman.", options: ["True", "False"], answer: 0 },
+                { q: "True/False: She wears a bright green and yellow costume.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: She is a terrible fighter and a weak leader.", options: ["True", "False"], answer: 1 },
+                { q: "True/False: Her island is a beautiful, secret place.", options: ["True", "False"], answer: 0 }
+            ]
         }
     ];
 
@@ -435,7 +882,6 @@
     const transcriptArea = document.getElementById('transcript-area');
     const readTranscriptBtn = document.getElementById('read-transcript-btn');
 
-    // Remove controls when the audio finishes to enforce "listen once"
     audioPlayer.onended = function() {
         audioPlayer.removeAttribute("controls");
         document.getElementById('listening-instructions').innerHTML = "<strong>Audio finished. Please start the quiz.</strong>";
@@ -463,7 +909,6 @@
         
         appTitle.innerText = currentLesson.title;
         
-        // Reset Audio Player settings for listening phase
         audioPlayer.src = currentLesson.audioUrl;
         audioPlayer.setAttribute("controls", "controls");
         document.getElementById('listening-instructions').innerHTML = "<strong>1. Listen carefully to the audio (You can only listen once!):</strong>";
@@ -480,12 +925,9 @@
 
     function startQuiz() {
         audioPlayer.pause(); 
-        
-        // Hide the entire listening phase completely to prevent access during the quiz
         listeningPhase.classList.add('hidden'); 
         quizContainer.classList.remove('hidden');
 
-        // Check if the questions array is empty to prevent crashes
         if (!currentLesson.questions || currentLesson.questions.length === 0) {
             progressText.innerText = "0/0";
             questionText.innerText = "Oops! Questions for this superhero haven't been added yet.";
@@ -497,7 +939,6 @@
             return;
         }
 
-        // Reset the button incase it was modified by the empty check above
         nextBtn.innerText = "Next Question";
         nextBtn.onclick = nextQuestion;
         loadQuestion();
@@ -553,7 +994,6 @@
         quizScreen.classList.add('hidden');
         resultsScreen.classList.remove('hidden');
         
-        // Load audio into the review player so they can listen freely
         reviewAudioPlayer.src = currentLesson.audioUrl;
         
         transcriptArea.classList.add('hidden');
